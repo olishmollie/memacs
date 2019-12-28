@@ -24,8 +24,8 @@
 (setq custom-file --custom-file)
 
 ;; Global Modes
-(setq global-auto-revert-mode t)
-(setq global-linum-mode t)
+(global-auto-revert-mode t)
+(global-linum-mode t)
 
 ;; Turn Off Bell
 (setq ring-bell-function 'ignore)
