@@ -87,7 +87,6 @@
   :init
   (setq shell-pop-shell-type
 	'("vterm" "*vterm*" (lambda nil (vterm))))
-  (setq shell-pop-universal-key "C-'")
   (setq shell-pop-full-span t))
 
 ;; Version Control
