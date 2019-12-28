@@ -1,4 +1,4 @@
-;;; core.el --- Basic emacs configurations.
+;;; basic.el --- Basic Emacs configurations.
 
 ;;; Commentary:
 
@@ -30,4 +30,4 @@
 ;; Turn Off Bell
 (setq ring-bell-function 'ignore)
 
-;;; core ends here
+;;; basic ends here
