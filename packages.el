@@ -53,7 +53,6 @@
 
 ;; Incremental Completion Framework
 (use-package counsel
-  :defer t
   :config (ivy-mode t))
 
 ;; Project Management
