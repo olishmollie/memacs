@@ -20,6 +20,12 @@
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
+;; Auto Update Packages
+(use-package auto-package-update
+  :init (setq auto-package-update-delete-old-versions t
+		auto-package-update-hide-results t)
+  :config (auto-package-update-maybe))
+
 ;; Copy Shell Env to GUI Emacs
 (use-package exec-path-from-shell
   :init (when (memq window-system '(mac ns x))
@@ -27,82 +33,88 @@
 
 ;; Monokai Theme
 (use-package monokai-theme
-  :init (load-theme 'monokai t))
+  :config (load-theme 'monokai t))
 
 ;; Vim Emulation
 (use-package evil
-  :commands evil-set-initial-state
-  :config
-  (evil-set-initial-state 'vterm-mode 'emacs)
-  :init (evil-mode t))
+  :init (setq evil-want-C-u-scroll t)
+  :config (evil-mode t))
 (use-package evil-commentary
-  :requires evil
-  :init (evil-commentary-mode t))
+  :after evil
+  :config (evil-commentary-mode t))
 (use-package evil-surround
-  :requires evil
-  :init (global-evil-surround-mode t))
+  :after evil
+  :config (global-evil-surround-mode t))
 
 ;; Popup Key Binding Hints
 (use-package which-key
-  :config
-  (setq which-key-separator " ")
-  (setq which-key-prefix-prefix "+")
-  :init (which-key-mode))
+  :defer t
+  :config (which-key-mode))
 
 ;; Incremental Completion Framework
-(use-package ivy
-  :init (ivy-mode t))
+(use-package counsel
+  :defer t
+  :config (ivy-mode t))
 
 ;; Project Management
 (use-package projectile
-  :init (projectile-mode t))
+  :defer t
+  :config (projectile-mode t))
 
 ;; Code Completion Framework
 (use-package company
-  :init (global-company-mode))
+  :defer t
+  :config (global-company-mode))
 
 ;; Syntax Checking
 (use-package flycheck
-  :init (global-flycheck-mode))
+  :defer t
+  :config (global-flycheck-mode))
 
 ;; Language Server Protocol
 (use-package lsp-mode
   :commands lsp
-  :hook ((lsp-mode . lsp-ui-mode)
-	 (c-mode . lsp)
+  :hook ((c-mode . lsp)
 	 (c++-mode . lsp)
-	 (js-mode . lsp))
-  :config (setq lsp-prefer-flymake nil))
+	 (js-mode . lsp)
+	 (lsp-mode . lsp-ui-mode))
+  :init (setq lsp-prefer-flymake nil))
 (use-package lsp-ui
-  :requires lsp)
-(use-package company-lsp
-  :requires lsp)
-(use-package lsp-ivy
-  :requires lsp)
+  :after lsp
+  :init
+  (setq lsp-ui-flycheck-enable t
+	lsp-ui-doc-position 'top)
+  :config
+  (set-face-background 'lsp-ui-doc-background
+		       (face-attribute 'default :background)))
+(use-package company-lsp)
+(use-package lsp-ivy)
 
 ;; Terminal Management
 (use-package vterm
   :hook (vterm-mode . (lambda () (linum-mode -1))))
 (use-package shell-pop
-  :init
-  (setq shell-pop-shell-type
-	'("vterm" "*vterm*" (lambda nil (vterm))))
-  (setq shell-pop-full-span t))
+  :after vterm
+  :init (setq shell-pop-full-span t
+	      shell-pop-shell-type '("vterm" "*vterm*" (lambda nil (vterm)))))
 
 ;; Version Control
 (use-package magit
-  :init (global-set-key (kbd "C-x g") 'magit-status))
+  :defer t)
+(use-package evil-magit
+  :after magit)
 (use-package diff-hl
+  :defer t
   :hook (magit-post-refresh . diff-hl-magit-post-refresh)
-  :config (setq diff-hl-side 'right)
-  :init
+  :init (setq diff-hl-side 'right)
+  :config
   (global-diff-hl-mode t)
   (diff-hl-margin-mode t))
 
-;; Auto Update Packages
-(use-package auto-package-update
-  :config (setq auto-package-update-delete-old-versions t
-		auto-package-update-hide-results t)
-  :init (auto-package-update-maybe))
+;; File Tree Sidebar
+(use-package treemacs
+  :defer t
+  :requires all-the-icons
+  :init (setq neo-theme 'icons))
 
 ;;; packages.el ends here

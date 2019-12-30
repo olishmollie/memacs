@@ -26,6 +26,11 @@
 ;; Global Modes
 (global-auto-revert-mode t)
 (global-linum-mode t)
+(electric-pair-mode t)
+(show-paren-mode t)
+
+;; Delete trailing whitespace
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Turn Off Bell
 (setq ring-bell-function 'ignore)
