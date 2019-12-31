@@ -6,7 +6,11 @@
 
 (use-package company
   :defer t
-  :config (global-company-mode))
+  :init
+  (setq company-idle-delay 0
+	company-minimum-prefix-length 1
+	company-selection-wrap-around t)
+  :config (global-company-mode)
 
 (defun memacs/add-company-keybindings ()
   "Add keybindings to company-mode."
