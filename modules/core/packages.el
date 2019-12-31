@@ -31,9 +31,10 @@
   :init (when (memq window-system '(mac ns x))
 	  (exec-path-from-shell-initialize)))
 
-;; Monokai Theme
-(use-package monokai-theme
-  :config (load-theme 'monokai t))
+;; Themes
+(use-package doom-themes
+  :config
+  (load-theme 'doom-one t))
 
 ;; Vim Emulation
 (use-package evil

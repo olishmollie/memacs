@@ -14,12 +14,16 @@
 	neo-smart-open t
 	neo-auto-indent-point t
 	neo-autorefresh t
+	neo-mode-line-type 'default
 	neo-banner-message "MeMacs")
   (when (eq 'darwin system-type)
     (setq neo-default-system-application "open")))
 
 (memacs/bind-prefix-map 'memacs-file-prefix-map
 			'(("t" . ("tree" . neotree-toggle))))
+
+(when (fboundp #'doom-themes-neotree-config)
+  (doom-themes-neotree-config))
 
 ;; TODO - hide cursor when opening neotree.
 ;; See https://emacs.stackexchange.com/questions/18374/persistently-hide-cursor-evil-mode-proble
