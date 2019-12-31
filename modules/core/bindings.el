@@ -126,14 +126,6 @@
 (memacs/make-prefix-map 'memacs-help-prefix-map memacs-help-prefix-key 'memacs-prefix-map "Help")
 (memacs/bind-prefix-map 'memacs-help-prefix-map memacs-help-prefix-bindings)
 
-;; Company
-(define-key evil-insert-state-map (kbd "C-n") #'company-complete)
-(define-key evil-insert-state-map (kbd "C-p") #'company-complete)
-(define-key company-active-map (kbd "C-n") #'company-select-next)
-(define-key company-active-map (kbd "C-p") #'company-select-previous)
-(define-key company-search-map (kbd "C-n") #'company-select-next)
-(define-key company-search-map (kbd "C-p") #'company-select-previous)
-
 ;; Many modes are more useful in emacs modes. This section
 ;; adds some essential vim keybindings to these modes while
 ;; maintaining the usefule emacs bindings.
@@ -150,7 +142,7 @@
     (kbd "C-u")     #'evil-scroll-up
     (kbd "}")       #'evil-forward-paragraph
     (kbd "{")       #'evil-backward-paragraph)
-  "A list of core VIM bindings.  Used in useful emacs modes.")
+  "A list of core VIM bindings.  Used in useful Emacs modes.")
 
 (evil-set-initial-state 'help-mode 'emacs)
 (evil-add-hjkl-bindings help-mode-map 'emacs

@@ -60,11 +60,6 @@
   :defer t
   :config (projectile-mode t))
 
-;; Code Completion Framework
-(use-package company
-  :defer t
-  :config (global-company-mode))
-
 ;; Syntax Checking
 (use-package flycheck
   :defer t
