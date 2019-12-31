@@ -22,6 +22,8 @@
   "File management prefix-key.  Defaults to 'f'.")
 (defvar memacs-help-prefix-key "h"
   "Help management prefix-key.  Defaults to 'h'.")
+(defvar memacs-project-prefix-key "p"
+  "Project management prefix-key. Defaults to 'p'.")
 
 (defun memacs/make-prefix-map (symbol key parent &optional name)
   "Bind SYMBOL to a new prefix given by KEY with parent keymap PARENT.
@@ -58,7 +60,7 @@
 (defvar memacs-prefix-bindings
   '(("SPC" . ("M-x" . execute-extended-command))
     (":" . ("eval" . eval-expression)))
-  "Default top level MeMacs prefix-bindings.")
+  "Default top level MeMacs prefix bindings.")
 
 (defvar memacs-buffer-prefix-bindings
   `(("b" . ("switch-buffer" . ivy-switch-buffer))
@@ -66,7 +68,7 @@
     ("l" . ("list-buffers" . list-buffers))
     ("n" . ("next-buffer" . next-buffer))
     ("p" . ("previous-buffer" . previous-buffer)))
-  "Default buffer prefix-bindings.")
+  "Default buffer prefix bindings.")
 
 (defvar memacs-window-prefix-bindings
   '(("/" . ("vertical-split" . evil-window-vsplit))
@@ -77,11 +79,11 @@
     ("j" . ("window-down" . evil-window-down))
     ("d" . ("window-delete" . evil-window-delete))
     ("o" . ("delete-other-windows" . delete-other-windows)))
-  "Default window prefix-bindings.")
+  "Default window prefix bindings.")
 
 (defvar memacs-file-prefix-bindings
   '(("f" . ("find-file" . counsel-find-file)))
-  "Default file prefix-bindings.")
+  "Default file prefix bindings.")
 
 (defvar memacs-help-prefix-bindings
  '(("v" . ("describe-variable" . counsel-describe-variable))
@@ -93,13 +95,18 @@
    ("P" . ("describe-package" . describe-package))
    ("a" . ("apropos" . counsel-apropos))
    ("s" . ("describe-syntax" . describe-syntax)))
- "Default help prefix-bindings.")
+ "Default help prefix bindings.")
+
+(defvar memacs-project-prefix-bindings
+  '(("f" . ("find-file" . projectile-find-file))
+    ("r" . ("replace-string" . projectile-replace))
+    ("s" . ("replace-regexp" . projectile-replace-regexp)))
+  "Default project prefix bindings.")
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 (memacs/make-prefix-map 'memacs-prefix-map memacs-prefix-key evil-motion-state-map)
 (memacs/bind-prefix-map 'memacs-prefix-map memacs-prefix-bindings)
-
 
 ;; Buffer Management
 (memacs/make-prefix-map 'memacs-buffer-prefix-map memacs-buffer-prefix-key 'memacs-prefix-map "Buffers")
@@ -117,7 +124,12 @@
 (memacs/make-prefix-map 'memacs-help-prefix-map memacs-help-prefix-key 'memacs-prefix-map "Help")
 (memacs/bind-prefix-map 'memacs-help-prefix-map memacs-help-prefix-bindings)
 
-;; Many modes are more useful in emacs modes. This section
+;; Project Management
+(memacs/make-prefix-map 'memacs-project-prefix-map memacs-project-prefix-key 'memacs-prefix-map "Projects")
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(memacs/bind-prefix-map 'memacs-project-prefix-map memacs-project-prefix-bindings)
+
+;; Many modes are more useful in emacs state. This section
 ;; adds some essential vim keybindings to these modes while
 ;; maintaining the usefule emacs bindings.
 (defvar memacs-core-vim-bindings

@@ -58,7 +58,6 @@
 
 ;; Project Management
 (use-package projectile
-  :defer t
   :config (projectile-mode t))
 
 ;; Syntax Checking
