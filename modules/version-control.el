@@ -10,7 +10,6 @@
 (use-package evil-magit
   :after magit)
 (use-package diff-hl
-  :defer t
   :hook (magit-post-refresh . diff-hl-magit-post-refresh)
   :init (setq diff-hl-side 'right)
   :config
