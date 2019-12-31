@@ -8,7 +8,7 @@
 (setq memacs-modules '(filetree
 		       version-control
 		       completion
-		       ;; terminal
+		       terminal
 		       mode-line))
 
 (dolist (module memacs-modules)
