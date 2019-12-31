@@ -3,7 +3,10 @@
 ;;; Commentary:
 
 ;;; Code:
-(load-file (concat user-emacs-directory "basic.el"))
-(load-file (concat user-emacs-directory "packages.el"))
-(load-file (concat user-emacs-directory "core-bindings.el"))
+(require 'core (concat user-emacs-directory "modules/core/core.el"))
+
+(setq memacs-modules '(filetree))
+
+(dolist (module memacs-modules)
+  (memacs/load-module module))
 ;;; init.el ends here

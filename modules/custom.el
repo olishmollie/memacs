@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (evil-magit which-key vterm use-package shell-pop projectile neotree monokai-theme magit lsp-ui lsp-ivy flycheck exec-path-from-shell evil-surround evil-commentary diff-hl counsel company-lsp auto-package-update))))
+    (neotree all-the-icons which-key vterm use-package shell-pop projectile monokai-theme lsp-ui lsp-ivy flycheck exec-path-from-shell evil-surround evil-magit evil-commentary diff-hl counsel company-lsp auto-package-update))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

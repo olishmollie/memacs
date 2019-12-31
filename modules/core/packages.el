@@ -110,10 +110,4 @@
   (global-diff-hl-mode t)
   (diff-hl-margin-mode t))
 
-;; File Tree Sidebar
-(use-package treemacs
-  :defer t
-  :requires all-the-icons
-  :init (setq neo-theme 'icons))
-
 ;;; packages.el ends here
