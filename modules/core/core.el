@@ -36,13 +36,6 @@
 ;; Delete trailing whitespace
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
 
-(defun memacs/load-directory (dir)
-  "Load all '.el' files in DIR."
-  (let ((load-it (lambda (f)
-		   (load-file (concat (file-name-as-directory dir) f)))
-		 ))
-    (mapc load-it (directory-files dir nil "\\.el$"))))
-
 (defun memacs/load-module (module)
   "Load MODULE into MeMacs."
   (load-file (concat memacs-modules-directory (symbol-name module) ".el")))
