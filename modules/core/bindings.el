@@ -237,4 +237,18 @@
   (kbd "}")       #'evil-forward-paragraph
   (kbd "{")       #'evil-backward-paragraph)
 
+(evil-set-initial-state 'completion-list-mode 'emacs)
+(evil-add-hjkl-bindings completion-list-mode-map 'emacs
+  (kbd "SPC")     #'memacs-prefix-map
+  (kbd "/")       #'evil-search-forward
+  (kbd "w")       #'evil-forward-word-begin
+  (kbd "b")       #'evil-backward-word-begin
+  (kbd "n")       #'evil-search-next
+  (kbd "N")       #'evil-search-previous
+  (kbd "gg")      #'beginning-of-buffer
+  (kbd "G")       #'end-of-buffer
+  (kbd "C-d")     #'evil-scroll-down
+  (kbd "C-u")     #'evil-scroll-up
+  (kbd "}")       #'evil-forward-paragraph
+  (kbd "{")       #'evil-backward-paragraph)
 ;;; bindings.el ends here
