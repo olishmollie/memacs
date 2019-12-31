@@ -34,7 +34,7 @@
 (add-to-list 'backup-directory-alist `("." . ,memacs-backup-directory))
 
 ;; Delete trailing whitespace
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
 
 (defun memacs/load-directory (dir)
   "Load all '.el' files in DIR."

@@ -127,118 +127,119 @@
 (memacs/bind-prefix-map 'memacs-help-prefix-map memacs-help-prefix-bindings)
 
 ;; Company
-(define-key evil-insert-state-map (kbd "C-n") 'company-complete)
-(define-key evil-insert-state-map (kbd "C-p") 'company-complete)
-(define-key company-active-map (kbd "C-n") 'company-select-next)
-(define-key company-active-map (kbd "C-p") 'company-select-previous)
-(define-key company-search-map (kbd "C-n") 'company-select-next)
-(define-key company-search-map (kbd "C-p") 'company-select-previous)
+(define-key evil-insert-state-map (kbd "C-n") #'company-complete)
+(define-key evil-insert-state-map (kbd "C-p") #'company-complete)
+(define-key company-active-map (kbd "C-n") #'company-select-next)
+(define-key company-active-map (kbd "C-p") #'company-select-previous)
+(define-key company-search-map (kbd "C-n") #'company-select-next)
+(define-key company-search-map (kbd "C-p") #'company-select-previous)
 
 ;; Many modes are more useful in emacs modes. This section
 ;; adds some essential vim keybindings to these modes while
 ;; maintaining the usefule emacs bindings.
 (defvar memacs-core-vim-bindings
-  '((kbd "SPC")     'memacs-prefix-map
-    (kbd "/")       'evil-search-forward
-    (kbd "w")       'evil-forward-word-begin
-    (kbd "b")       'evil-backward-word-begin
-    (kbd "n")       'evil-search-next
-    (kbd "N")       'evil-search-previous
-    (kbd "gg")      'beginning-of-buffer
-    (kbd "G")       'end-of-buffer
-    (kbd "C-d")     'evil-scroll-down
-    (kbd "C-u")     'evil-scroll-up
-    (kbd "}")       'evil-forward-paragraph
-    (kbd "{")       'evil-backward-paragraph)
+  '((kbd "SPC")     #'memacs-prefix-map
+    (kbd "/")       #'evil-search-forward
+    (kbd "w")       #'evil-forward-word-begin
+    (kbd "b")       #'evil-backward-word-begin
+    (kbd "n")       #'evil-search-next
+    (kbd "N")       #'evil-search-previous
+    (kbd "gg")      #'beginning-of-buffer
+    (kbd "G")       #'end-of-buffer
+    (kbd "C-d")     #'evil-scroll-down
+    (kbd "C-u")     #'evil-scroll-up
+    (kbd "}")       #'evil-forward-paragraph
+    (kbd "{")       #'evil-backward-paragraph)
   "A list of core VIM bindings.  Used in useful emacs modes.")
 
 (evil-set-initial-state 'help-mode 'emacs)
 (evil-add-hjkl-bindings help-mode-map 'emacs
-  (kbd "SPC")     'memacs-prefix-map
-  (kbd "/")       'evil-search-forward
-  (kbd "w")       'evil-forward-word-begin
-  (kbd "b")       'evil-backward-word-begin
-  (kbd "n")       'evil-search-next
-  (kbd "N")       'evil-search-previous
-  (kbd "gg")      'beginning-of-buffer
-  (kbd "G")       'end-of-buffer
-  (kbd "C-d")     'evil-scroll-down
-  (kbd "C-u")     'evil-scroll-up
-  (kbd "}")       'evil-forward-paragraph
-  (kbd "{")       'evil-backward-paragraph)
+  (kbd "SPC")     #'memacs-prefix-map
+  (kbd "/")       #'evil-search-forward
+  (kbd "w")       #'evil-forward-word-begin
+  (kbd "b")       #'evil-backward-word-begin
+  (kbd "n")       #'evil-search-next
+  (kbd "N")       #'evil-search-previous
+  (kbd "gg")      #'beginning-of-buffer
+  (kbd "G")       #'end-of-buffer
+  (kbd "C-d")     #'evil-scroll-down
+  (kbd "C-u")     #'evil-scroll-up
+  (kbd "}")       #'evil-forward-paragraph
+  (kbd "{")       #'evil-backward-paragraph)
 
 (evil-set-initial-state 'Buffer-menu-mode 'emacs)
 (evil-add-hjkl-bindings Buffer-menu-mode-map 'emacs
-  (kbd "SPC")     'memacs-prefix-map
-  (kbd "/")       'evil-search-forward
-  (kbd "w")       'evil-forward-word-begin
-  (kbd "b")       'evil-backward-word-begin
-  (kbd "n")       'evil-search-next
-  (kbd "N")       'evil-search-previous
-  (kbd "gg")      'beginning-of-buffer
-  (kbd "G")       'end-of-buffer
-  (kbd "C-d")     'evil-scroll-down
-  (kbd "C-u")     'evil-scroll-up
-  (kbd "}")       'evil-forward-paragraph
-  (kbd "{")       'evil-backward-paragraph)
+  (kbd "SPC")     #'memacs-prefix-map
+  (kbd "/")       #'evil-search-forward
+  (kbd "w")       #'evil-forward-word-begin
+  (kbd "b")       #'evil-backward-word-begin
+  (kbd "n")       #'evil-search-next
+  (kbd "N")       #'evil-search-previous
+  (kbd "gg")      #'beginning-of-buffer
+  (kbd "G")       #'end-of-buffer
+  (kbd "C-d")     #'evil-scroll-down
+  (kbd "C-u")     #'evil-scroll-up
+  (kbd "}")       #'evil-forward-paragraph
+  (kbd "{")       #'evil-backward-paragraph)
 
 (evil-set-initial-state 'dired-mode 'emacs)
 (evil-add-hjkl-bindings dired-mode-map 'emacs
-  (kbd "SPC")     'memacs-prefix-map
-  (kbd "/")       'evil-search-forward
-  (kbd "w")       'evil-forward-word-begin
-  (kbd "b")       'evil-backward-word-begin
-  (kbd "n")       'evil-search-next
-  (kbd "N")       'evil-search-previous
-  (kbd "gg")      'beginning-of-buffer
-  (kbd "G")       'end-of-buffer
-  (kbd "C-d")     'evil-scroll-down
-  (kbd "C-u")     'evil-scroll-up
-  (kbd "}")       'evil-forward-paragraph
-  (kbd "{")       'evil-backward-paragraph)
+  (kbd "SPC")     #'memacs-prefix-map
+  (kbd "/")       #'evil-search-forward
+  (kbd "w")       #'evil-forward-word-begin
+  (kbd "b")       #'evil-backward-word-begin
+  (kbd "n")       #'evil-search-next
+  (kbd "N")       #'evil-search-previous
+  (kbd "gg")      #'beginning-of-buffer
+  (kbd "G")       #'end-of-buffer
+  (kbd "C-d")     #'evil-scroll-down
+  (kbd "C-u")     #'evil-scroll-up
+  (kbd "}")       #'evil-forward-paragraph
+  (kbd "{")       #'evil-backward-paragraph)
 
 (evil-set-initial-state 'package-menu-mode 'emacs)
 (evil-add-hjkl-bindings package-menu-mode-map 'emacs
-  (kbd "SPC")     'memacs-prefix-map
-  (kbd "/")       'evil-search-forward
-  (kbd "w")       'evil-forward-word-begin
-  (kbd "b")       'evil-backward-word-begin
-  (kbd "n")       'evil-search-next
-  (kbd "N")       'evil-search-previous
-  (kbd "gg")      'beginning-of-buffer
-  (kbd "G")       'end-of-buffer
-  (kbd "C-d")     'evil-scroll-down
-  (kbd "C-u")     'evil-scroll-up
-  (kbd "}")       'evil-forward-paragraph
-  (kbd "{")       'evil-backward-paragraph)
+  (kbd "SPC")     #'memacs-prefix-map
+  (kbd "/")       #'evil-search-forward
+  (kbd "w")       #'evil-forward-word-begin
+  (kbd "b")       #'evil-backward-word-begin
+  (kbd "n")       #'evil-search-next
+  (kbd "N")       #'evil-search-previous
+  (kbd "gg")      #'beginning-of-buffer
+  (kbd "G")       #'end-of-buffer
+  (kbd "C-d")     #'evil-scroll-down
+  (kbd "C-u")     #'evil-scroll-up
+  (kbd "}")       #'evil-forward-paragraph
+  (kbd "{")       #'evil-backward-paragraph)
 
 (evil-set-initial-state 'compilation-mode 'emacs)
 (evil-add-hjkl-bindings compilation-mode-map 'emacs
-  (kbd "SPC")     'memacs-prefix-map
-  (kbd "/")       'evil-search-forward
-  (kbd "w")       'evil-forward-word-begin
-  (kbd "b")       'evil-backward-word-begin
-  (kbd "n")       'evil-search-next
-  (kbd "N")       'evil-search-previous
-  (kbd "gg")      'beginning-of-buffer
-  (kbd "G")       'end-of-buffer
-  (kbd "C-d")     'evil-scroll-down
-  (kbd "C-u")     'evil-scroll-up
-  (kbd "}")       'evil-forward-paragraph
-  (kbd "{")       'evil-backward-paragraph)
+  (kbd "SPC")     #'memacs-prefix-map
+  (kbd "/")       #'evil-search-forward
+  (kbd "w")       #'evil-forward-word-begin
+  (kbd "b")       #'evil-backward-word-begin
+  (kbd "n")       #'evil-search-next
+  (kbd "N")       #'evil-search-previous
+  (kbd "gg")      #'beginning-of-buffer
+  (kbd "G")       #'end-of-buffer
+  (kbd "C-d")     #'evil-scroll-down
+  (kbd "C-u")     #'evil-scroll-up
+  (kbd "}")       #'evil-forward-paragraph
+  (kbd "{")       #'evil-backward-paragraph)
 
 (evil-set-initial-state 'custom-mode 'emacs)
 (evil-add-hjkl-bindings custom-mode-map 'emacs
-  (kbd "SPC")     'memacs-prefix-map
-  (kbd "/")       'evil-search-forward
-  (kbd "w")       'evil-forward-word-begin
-  (kbd "b")       'evil-backward-word-begin
-  (kbd "n")       'evil-search-next
-  (kbd "N")       'evil-search-previous
-  (kbd "gg")      'beginning-of-buffer
-  (kbd "G")       'end-of-buffer
-  (kbd "C-d")     'evil-scroll-down
-  (kbd "C-u")     'evil-scroll-up
-  (kbd "}")       'evil-forward-paragraph
-  (kbd "{")       'evil-backward-paragraph)
+  (kbd "SPC")     #'memacs-prefix-map
+  (kbd "/")       #'evil-search-forward
+  (kbd "w")       #'evil-forward-word-begin
+  (kbd "b")       #'evil-backward-word-begin
+  (kbd "n")       #'evil-search-next
+  (kbd "N")       #'evil-search-previous
+  (kbd "gg")      #'beginning-of-buffer
+  (kbd "G")       #'end-of-buffer
+  (kbd "C-d")     #'evil-scroll-down
+  (kbd "C-u")     #'evil-scroll-up
+  (kbd "}")       #'evil-forward-paragraph
+  (kbd "{")       #'evil-backward-paragraph)
+
 ;;; bindings.el ends here

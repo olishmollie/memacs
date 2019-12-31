@@ -17,7 +17,7 @@
   (global-diff-hl-mode t)
   (diff-hl-margin-mode t))
 
-(defun memacs/magit-kill-buffers(param)
+(defun memacs/magit-kill-buffers (param)
   (magit-restore-window-configuration)
   (dolist (buffer (magit-mode-get-buffers))
     (kill-buffer buffer)))
