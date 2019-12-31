@@ -97,17 +97,4 @@
   :init (setq shell-pop-full-span t
 	      shell-pop-shell-type '("vterm" "*vterm*" (lambda nil (vterm)))))
 
-;; Version Control
-(use-package magit
-  :defer t)
-(use-package evil-magit
-  :after magit)
-(use-package diff-hl
-  :defer t
-  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
-  :init (setq diff-hl-side 'right)
-  :config
-  (global-diff-hl-mode t)
-  (diff-hl-margin-mode t))
-
 ;;; packages.el ends here

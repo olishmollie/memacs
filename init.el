@@ -5,7 +5,7 @@
 ;;; Code:
 (require 'core (concat user-emacs-directory "modules/core/core.el"))
 
-(setq memacs-modules '(filetree))
+(setq memacs-modules '(filetree version-control))
 
 (dolist (module memacs-modules)
   (memacs/load-module module))
