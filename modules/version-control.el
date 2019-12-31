@@ -5,12 +5,10 @@
 ;;; Code:
 (use-package magit
   :defer t
-  :init
-  (setq magit-bury-buffer-function #'memacs/magit-kill-buffers))
+  :init (setq magit-bury-buffer-function #'memacs/magit-kill-buffers))
 (use-package evil-magit
   :after magit)
 (use-package diff-hl
-  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
   :init (setq diff-hl-side 'right)
   :config
   (global-diff-hl-mode t)
@@ -28,5 +26,7 @@
   "Default magit prefix-bindings.")
 (memacs/make-prefix-map 'memacs-magit-prefix-map memacs-magit-prefix-key 'memacs-prefix-map "Magit")
 (memacs/bind-prefix-map 'memacs-magit-prefix-map memacs-magit-prefix-bindings)
+
+(add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
 
 ;;; version-control ends here

@@ -9,12 +9,12 @@
 
 (defvar memacs-modules nil)
 
+(setq-default indent-tabs-mode nil)
 (setq inhibit-startup-screen t)
 (setq ring-bell-function 'ignore)
 (setq backup-by-copying t)
 (setq confirm-kill-processes nil)
 (setq custom-file memacs-custom-file)
-(setq-default indent-tabs-mode nil)
 
 ;; Appearance/Basic Behavior
 (tool-bar-mode -1)
