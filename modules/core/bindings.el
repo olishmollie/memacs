@@ -14,8 +14,6 @@
 
 (defvar memacs-prefix-key "SPC"
   "MeMacs prefix-key.  Defaults to SPC.")
-(defvar memacs-magit-prefix-key "g"
-  "Magit prefix-key.  Defaults to 'g'.")
 (defvar memacs-buffer-prefix-key "b"
   "Buffer management prefix-key.  Defaults to 'b'.")
 (defvar memacs-window-prefix-key "w"
@@ -59,12 +57,8 @@
 
 (defvar memacs-prefix-bindings
   '(("SPC" . ("M-x" . execute-extended-command))
-    (":" . ("eval" . eval-expression))
-    ("t" . ("terminal" . shell-pop)))
+    (":" . ("eval" . eval-expression)))
   "Default top level MeMacs prefix-bindings.")
-
-(defvar memacs-magit-prefix-bindings '(("s" . ("status" . magit-status)))
-  "Default magit prefix-bindings.")
 
 (defvar memacs-buffer-prefix-bindings
   `(("b" . ("switch-buffer" . ivy-switch-buffer))
@@ -106,9 +100,6 @@
 (memacs/make-prefix-map 'memacs-prefix-map memacs-prefix-key evil-motion-state-map)
 (memacs/bind-prefix-map 'memacs-prefix-map memacs-prefix-bindings)
 
-;; Magit
-(memacs/make-prefix-map 'memacs-magit-prefix-map memacs-magit-prefix-key 'memacs-prefix-map "Magit")
-(memacs/bind-prefix-map 'memacs-magit-prefix-map memacs-magit-prefix-bindings)
 
 ;; Buffer Management
 (memacs/make-prefix-map 'memacs-buffer-prefix-map memacs-buffer-prefix-key 'memacs-prefix-map "Buffers")

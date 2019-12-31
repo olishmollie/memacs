@@ -21,4 +21,12 @@
   (dolist (buffer (magit-mode-get-buffers))
     (kill-buffer buffer)))
 
+;; Keybindings
+(defvar memacs-magit-prefix-key "g"
+  "Magit prefix-key.  Defaults to 'g'.")
+(defvar memacs-magit-prefix-bindings '(("s" . ("status" . magit-status)))
+  "Default magit prefix-bindings.")
+(memacs/make-prefix-map 'memacs-magit-prefix-map memacs-magit-prefix-key 'memacs-prefix-map "Magit")
+(memacs/bind-prefix-map 'memacs-magit-prefix-map memacs-magit-prefix-bindings)
+
 ;;; version-control ends here
