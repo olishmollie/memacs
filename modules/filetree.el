@@ -33,7 +33,7 @@
   (internal-show-cursor nil nil))
 
 (defun memacs/neotree-show-cursor ()
-  "Shows cursor after closing neotree."
+  "Show cursor after closing neotree."
   (blink-cursor-mode t)
   (internal-show-cursor nil t))
 
@@ -45,10 +45,11 @@
   (define-key evil-normal-state-local-map (kbd "x") #'neotree-collapse-all)
   (define-key evil-normal-state-local-map (kbd "p") #'neotree-quick-look)
   (define-key evil-normal-state-local-map (kbd "q") #'neotree-hide)
-  (define-key evil-normal-state-local-map (kbd "r") #'neotree-refresh)
+  (define-key evil-normal-state-local-map (kbd "g") #'neotree-refresh)
   (define-key evil-normal-state-local-map (kbd "A") #'neotree-stretch-toggle)
   (define-key evil-normal-state-local-map (kbd "n") #'neotree-create-node)
   (define-key evil-normal-state-local-map (kbd "d") #'neotree-delete-node)
+  (define-key evil-normal-state-local-map (kbd "r") #'neotree-rename-node)
   (define-key evil-normal-state-local-map (kbd "H") #'neotree-hidden-file-toggle))
 
 (add-hook 'neotree-mode-hook #'memacs/add-neotree-keybindings)

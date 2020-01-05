@@ -8,6 +8,7 @@
 (defvar memacs-custom-file (concat memacs-modules-directory "custom.el"))
 
 (defvar memacs-modules nil)
+(defvar memacs-project-directory nil)
 
 (setq-default indent-tabs-mode nil)
 (setq inhibit-startup-screen t)

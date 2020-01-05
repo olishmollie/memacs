@@ -5,6 +5,8 @@
 ;;; Code:
 (require 'core (concat user-emacs-directory "modules/core/core.el"))
 
+(setq memacs-project-directory "~/Dev/")
+
 (setq memacs-modules '(filetree
 		       version-control
 		       completion

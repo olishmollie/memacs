@@ -23,7 +23,7 @@
 (defvar memacs-help-prefix-key "h"
   "Help management prefix-key.  Defaults to 'h'.")
 (defvar memacs-project-prefix-key "p"
-  "Project management prefix-key. Defaults to 'p'.")
+  "Project management prefix-key.  Defaults to 'p'.")
 
 (defun memacs/make-prefix-map (symbol key parent &optional name)
   "Bind SYMBOL to a new prefix given by KEY with parent keymap PARENT.
@@ -99,8 +99,10 @@
 
 (defvar memacs-project-prefix-bindings
   '(("f" . ("find-file" . projectile-find-file))
-    ("r" . ("replace-string" . projectile-replace))
-    ("s" . ("replace-regexp" . projectile-replace-regexp)))
+    ("p" . ("switch-project" . projectile-switch-project))
+    ("g" . ("grep" . projectile-grep))
+    ("l" . ("edit-dir-locals" . projectile-edit-dir-locals))
+    ("r" . ("replace-string" . projectile-replace)))
   "Default project prefix bindings.")
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)

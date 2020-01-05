@@ -7,8 +7,7 @@
 (use-package company
   :defer t
   :init
-  (setq company-idle-delay 0
-	company-minimum-prefix-length 1
+  (setq company-minimum-prefix-length 1
 	company-selection-wrap-around t)
   :config (global-company-mode))
 
