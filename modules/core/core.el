@@ -23,7 +23,6 @@
 (menu-bar-mode -1)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
-(add-to-list 'default-frame-alist '(cursor-color . "#F8F8F2"))
 (electric-pair-mode t)
 (show-paren-mode t)
 (global-auto-revert-mode t)

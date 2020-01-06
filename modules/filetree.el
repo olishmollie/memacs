@@ -25,18 +25,6 @@
 (when (fboundp #'doom-themes-neotree-config)
   (doom-themes-neotree-config))
 
-;; TODO - hide cursor when opening neotree.
-;; See https://emacs.stackexchange.com/questions/18374/persistently-hide-cursor-evil-mode-proble
-(defun memacs/neotree-hide-cursor ()
-  "Hides cursor in neotree frame."
-  (blink-cursor-mode -1)
-  (internal-show-cursor nil nil))
-
-(defun memacs/neotree-show-cursor ()
-  "Show cursor after closing neotree."
-  (blink-cursor-mode t)
-  (internal-show-cursor nil t))
-
 (defun memacs/add-neotree-keybindings ()
   "Add keybindings to neotree-mode."
   (define-key evil-normal-state-local-map (kbd "TAB") #'neotree-enter)
