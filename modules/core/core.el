@@ -24,11 +24,11 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
 (add-to-list 'default-frame-alist '(cursor-color . "#F8F8F2"))
-(global-linum-mode t)
-(global-hl-line-mode)
 (electric-pair-mode t)
 (show-paren-mode t)
 (global-auto-revert-mode t)
+(add-hook 'prog-mode-hook #'hl-line-mode)
+(add-hook 'prog-mode-hook #'linum-mode)
 
 ;; Backups
 (if (not (file-exists-p memacs-backup-directory))

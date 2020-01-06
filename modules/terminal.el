@@ -5,10 +5,7 @@
 
 ;;; Code:
 
-(use-package vterm
-  :hook (vterm-mode . (lambda ()
-			(linum-mode -1)
-			(hl-line-mode -1))))
+(use-package vterm)
 (use-package shell-pop
   :after vterm
   :init (setq shell-pop-full-span t
