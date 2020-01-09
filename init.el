@@ -11,7 +11,8 @@
 		       version-control
 		       completion
 		       terminal
-		       mode-line))
+		       mode-line
+                       c-c++))
 
 (dolist (module memacs-modules)
   (memacs/load-module module))
