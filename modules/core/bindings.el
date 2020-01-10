@@ -12,6 +12,40 @@
 (require 'ivy)
 (require 'which-key)
 
+;; FIXME: The regex might match unwanted strings because of the first optional memacs-prefix-key.
+;; It would be better to give it exactly the right keybinding. No problems yet,
+;; but if they show up it'll probably be this function to blame.
+(defun memacs/add-to-which-key (prefix-key key name)
+  "Add PREFIX-KEY and KEY to which-key under NAME."
+  (message "prefix-key = %s, key = %s, name = %s" prefix-key key name)
+  (let ((regex (concat "\\(?:" memacs-prefix-key "\\)?" (regexp-quote (concat prefix-key " " key)))))
+    (add-to-list 'which-key-replacement-alist `((,regex . nil) . (nil . ,name)))))
+
+(defun memacs/prefix-map-key (map)
+  "Given a prefix-map MAP, get its corresponding prefix-key."
+  (symbol-value (intern (replace-regexp-in-string "map" "key" (symbol-name map)))))
+
+(defun memacs/make-prefix-map (symbol parent &optional name)
+  "Bind SYMBOL to a new prefix given by KEY with parent keymap PARENT.
+
+  Optionally pass NAME for which-key text."
+  (define-prefix-command symbol)
+  (let ((key (memacs/prefix-map-key symbol)))
+    (define-key parent (kbd key) symbol)
+    (if name (memacs/add-to-which-key (memacs/prefix-map-key parent) key name))))
+
+
+(defun memacs/bind-prefix-map (map bindings)
+  "Bind BINDINGS to MAP and configure which-key with their names."
+  (dolist (binding bindings)
+    (let* ((prefix-key (memacs/prefix-map-key map))
+	   (key (car binding))
+	   (def (cdr binding))
+	   (name (car def))
+	   (command (cdr def)))
+      (memacs/add-to-which-key prefix-key key name)
+      (define-key map (kbd key) command))))
+
 (defvar memacs-prefix-key "SPC"
   "MeMacs prefix-key.  Defaults to SPC.")
 (defvar memacs-buffer-prefix-key "b"
@@ -24,38 +58,10 @@
   "Help management prefix-key.  Defaults to 'h'.")
 (defvar memacs-project-prefix-key "p"
   "Project management prefix-key.  Defaults to 'p'.")
-
-(defun memacs/make-prefix-map (symbol key parent &optional name)
-  "Bind SYMBOL to a new prefix given by KEY with parent keymap PARENT.
-
-  Optionally pass NAME for which-key text."
-  (define-prefix-command symbol)
-  (define-key parent (kbd key) symbol)
-  (if name (which-key-add-key-based-replacements
-	     (concat memacs-prefix-key " " key) name)))
-
-(defun memacs/prefix-map-key (map)
-  "Given a prefix-map MAP, get its corresponding prefix-key."
-  (symbol-value (intern (replace-regexp-in-string "map" "key" (symbol-name map)))))
-
-;; FIXME: The regex might match unwanted strings because of the first optional memacs-prefix-key.
-;; It would be better to give it exactly the right keybinding. No problems yet,
-;; but if they show up it'll probably be this function to blame.
-(defun memacs/replace-prefix-key-name (prefix-key key name)
-  "Replace which-key binding given by regex 'memacs-prefix-key? PREFIX-KEY KEY' with NAME."
-  (let ((regex (concat "\\(?:" memacs-prefix-key "\\)?" (regexp-quote (concat prefix-key " " key)))))
-    (add-to-list 'which-key-replacement-alist `((,regex . nil) . (nil . ,name)))))
-
-(defun memacs/bind-prefix-map (map bindings)
-  "Bind BINDINGS to MAP and configure which-key with their names."
-  (dolist (binding bindings)
-    (let* ((prefix-key (memacs/prefix-map-key map))
-	   (key (car binding))
-	   (def (cdr binding))
-	   (name (car def))
-	   (command (cdr def)))
-      (memacs/replace-prefix-key-name prefix-key key name)
-      (define-key map (kbd key) command))))
+(defvar memacs-lsp-prefix-key "l"
+  "LSP prefix-key.  Defaults to 'l'.")
+(defvar memacs-lsp-jump-prefix-key "j"
+  "LSP jump prefix-key.  Defaults to 'j'.")
 
 (defvar memacs-prefix-bindings
   '(("SPC" . ("M-x" . execute-extended-command))
@@ -105,31 +111,44 @@
     ("r" . ("replace-string" . projectile-replace)))
   "Default project prefix bindings.")
 
+(defvar memacs-lsp-prefix-bindings
+  '(("j" . ("Jump" . 'memacs-lsp-jump-prefix-key))))
+
+(defvar memacs-lsp-jump-prefix-bindings
+  '(("d" . ("jump-to-definition" . #'lsp-find-definition))
+    ("i" . ("jump-to-implementation" . #'lsp-goto-implementation))
+    ("t" . ("jump-to-type-definition" . #'lsp-goto-type-definition))
+    ("r" . ("jump-to-references" . #'lsp-find-references))))
+
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-(memacs/make-prefix-map 'memacs-prefix-map memacs-prefix-key evil-motion-state-map)
+(memacs/make-prefix-map 'memacs-prefix-map evil-motion-state-map)
 (memacs/bind-prefix-map 'memacs-prefix-map memacs-prefix-bindings)
 
 ;; Buffer Management
-(memacs/make-prefix-map 'memacs-buffer-prefix-map memacs-buffer-prefix-key 'memacs-prefix-map "Buffers")
+(memacs/make-prefix-map 'memacs-buffer-prefix-map 'memacs-prefix-map "Buffers")
 (memacs/bind-prefix-map 'memacs-buffer-prefix-map memacs-buffer-prefix-bindings)
 
 ;; Window Management
-(memacs/make-prefix-map 'memacs-window-prefix-map memacs-window-prefix-key 'memacs-prefix-map "Windows")
+(memacs/make-prefix-map 'memacs-window-prefix-map 'memacs-prefix-map "Windows")
 (memacs/bind-prefix-map 'memacs-window-prefix-map memacs-window-prefix-bindings)
 
 ;; File Management
-(memacs/make-prefix-map 'memacs-file-prefix-map memacs-file-prefix-key 'memacs-prefix-map "Files")
+(memacs/make-prefix-map 'memacs-file-prefix-map 'memacs-prefix-map "Files")
 (memacs/bind-prefix-map 'memacs-file-prefix-map memacs-file-prefix-bindings)
 
 ;; Help
-(memacs/make-prefix-map 'memacs-help-prefix-map memacs-help-prefix-key 'memacs-prefix-map "Help")
+(memacs/make-prefix-map 'memacs-help-prefix-map 'memacs-prefix-map "Help")
 (memacs/bind-prefix-map 'memacs-help-prefix-map memacs-help-prefix-bindings)
 
 ;; Project Management
-(memacs/make-prefix-map 'memacs-project-prefix-map memacs-project-prefix-key 'memacs-prefix-map "Projects")
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(memacs/make-prefix-map 'memacs-project-prefix-map 'memacs-prefix-map "Projects")
 (memacs/bind-prefix-map 'memacs-project-prefix-map memacs-project-prefix-bindings)
+
+;; LSP
+(memacs/make-prefix-map 'memacs-lsp-prefix-map 'memacs-prefix-map "LSP")
+(memacs/make-prefix-map 'memacs-lsp-jump-prefix-map 'memacs-lsp-prefix-map "Jump")
+(memacs/bind-prefix-map 'memacs-lsp-jump-prefix-map memacs-lsp-jump-prefix-bindings)
 
 ;; Many modes are more useful in emacs state. This section
 ;; adds some essential vim keybindings to these modes while
