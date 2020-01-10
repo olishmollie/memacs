@@ -74,7 +74,8 @@
 	 (c++-mode . lsp)
 	 (js-mode . lsp)
 	 (lsp-mode . lsp-ui-mode))
-  :init (setq lsp-prefer-flymake nil))
+  :init (setq lsp-prefer-flymake nil
+              lsp-enable-snippet nil))
 (use-package lsp-ui
   :after lsp
   :init

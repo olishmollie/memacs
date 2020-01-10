@@ -24,7 +24,7 @@
   "Magit prefix-key.  Defaults to 'g'.")
 (defvar memacs-magit-prefix-bindings '(("s" . ("status" . magit-status)))
   "Default magit prefix-bindings.")
-(memacs/make-prefix-map 'memacs-magit-prefix-map memacs-magit-prefix-key 'memacs-prefix-map "Magit")
+(memacs/make-prefix-map 'memacs-magit-prefix-map 'memacs-prefix-map "Magit")
 (memacs/bind-prefix-map 'memacs-magit-prefix-map memacs-magit-prefix-bindings)
 
 (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
