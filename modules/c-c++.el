@@ -8,7 +8,7 @@
   "If non-nil, automatically format a C/C++ buffer on save.")
 
 (defun memacs/clang-format-on-save ()
-  "Format the current buffer with clang-format."
+  "If `memacs-enable-clang-format-on-save' is non-nil, format the current buffer with clang-format."
   (when memacs-enable-clang-format-on-save
     (lsp-format-buffer)))
 

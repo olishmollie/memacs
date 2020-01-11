@@ -20,6 +20,9 @@
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
+;; Key Binding Management
+(use-package general)
+
 ;; Auto Update Packages
 (use-package auto-package-update
   :init (setq auto-package-update-delete-old-versions t

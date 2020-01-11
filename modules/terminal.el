@@ -8,10 +8,10 @@
 (use-package vterm)
 (use-package shell-pop
   :after vterm
-  :init (setq shell-pop-full-span t
+  :init (setq shell-pop-universal-key "M-'"
+              shell-pop-full-span t
 	      shell-pop-shell-type '("vterm" "*vterm*" (lambda nil (vterm)))))
 
-(memacs/bind-prefix-map 'memacs-prefix-map
-			'(("t" . ("terminal" . shell-pop))))
+(evil-set-initial-state 'vterm-mode 'emacs)
 
 ;;; terminal ends here

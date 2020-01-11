@@ -9,7 +9,7 @@
 (use-package neotree
   :defer t
   :requires all-the-icons
-  :config
+  :init
   (setq neo-theme 'icons
 	neo-smart-open t
 	neo-auto-indent-point t
@@ -17,29 +17,30 @@
 	neo-mode-line-type 'default
 	neo-banner-message "MeMacs")
   (when (eq 'darwin system-type)
-    (setq neo-default-system-application "open")))
+    (setq neo-default-system-application "open"))
+  :config
+  (when (fboundp #'doom-themes-neotree-config)
+    (doom-themes-neotree-config)))
 
-(memacs/bind-prefix-map 'memacs-file-prefix-map
-			'(("t" . ("tree" . neotree-toggle))))
+(memacs/file-prefix
+  "t" '(neotree-toggle :which-key "Tree"))
 
-(when (fboundp #'doom-themes-neotree-config)
-  (doom-themes-neotree-config))
-
-(defun memacs/add-neotree-keybindings ()
-  "Add keybindings to neotree-mode."
-  (define-key evil-normal-state-local-map (kbd "TAB") #'neotree-enter)
-  (define-key evil-normal-state-local-map (kbd "RET") #'neotree-change-root)
-  (define-key evil-normal-state-local-map (kbd "<backtab>") #'neotree-select-up-node)
-  (define-key evil-normal-state-local-map (kbd "x") #'neotree-collapse-all)
-  (define-key evil-normal-state-local-map (kbd "p") #'neotree-quick-look)
-  (define-key evil-normal-state-local-map (kbd "q") #'neotree-hide)
-  (define-key evil-normal-state-local-map (kbd "g") #'neotree-refresh)
-  (define-key evil-normal-state-local-map (kbd "A") #'neotree-stretch-toggle)
-  (define-key evil-normal-state-local-map (kbd "n") #'neotree-create-node)
-  (define-key evil-normal-state-local-map (kbd "d") #'neotree-delete-node)
-  (define-key evil-normal-state-local-map (kbd "r") #'neotree-rename-node)
-  (define-key evil-normal-state-local-map (kbd "H") #'neotree-hidden-file-toggle))
-
-(add-hook 'neotree-mode-hook #'memacs/add-neotree-keybindings)
+(evil-set-initial-state 'neotree-mode 'emacs)
+(evil-add-hjkl-bindings neotree-mode-map 'emacs
+  (kbd "SPC") #'memacs-global-prefix-map
+  (kbd "w")   #'evil-forward-word-begin
+  (kbd "b")   #'evil-backward-word-begin
+  (kbd "gg")  #'beginning-of-buffer
+  (kbd "G")   #'end-of-buffer
+  (kbd "C-d") #'evil-scroll-down
+  (kbd "C-u") #'evil-scroll-up
+  (kbd "}")   #'evil-forward-paragraph
+  (kbd "{")   #'evil-backward-paragraph
+  (kbd "x")   #'neotree-collapse-all
+  (kbd "c")   #'neotree-create-node
+  (kbd "d")   #'neotree-delete-node
+  (kbd "r")   #'neotree-rename-node
+  (kbd "/")   #'neotree-enter-vertical-split
+  (kbd "-")   #'neotree-enter-horizontal-split)
 
 ;;; filetree ends here
