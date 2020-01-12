@@ -12,7 +12,8 @@
 		       completion
 		       terminal
 		       mode-line
-                       c-c++))
+                       c-c++
+                       latex))
 
 (dolist (module memacs-modules)
   (memacs/load-module module))
