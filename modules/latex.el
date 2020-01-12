@@ -8,7 +8,14 @@
   :defer t
   :ensure auctex
   :config
+  (setq TeX-clean-confirm nil)
   (add-hook 'LaTeX-mode-hook #'memacs/add-latex-bindings))
+
+(defun memacs/latex-compile()
+  "Compile latex file, clean intermediate files, and delete extra buffers."
+  (interactive)
+  (TeX-command-run-all nil)
+  (TeX-clean nil))
 
 (defun memacs/add-latex-bindings ()
   "Add latex keybindings."
@@ -24,7 +31,7 @@
     :non-normal-prefix "M-SPC m")
   (memacs/latex-prefix
     "`" '(TeX-next-error :whick-key "Display Error")
-    "a" '(TeX-command-run-all :which-key "Compile")
+    "a" '(memacs/latex-compile :which-key "Compile")
     "c" '(TeX-clean :which-key "Clean")
     "v" '(TeX-view :which-key "View"))
 
