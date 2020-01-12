@@ -67,7 +67,6 @@
 
 ;; Syntax Checking
 (use-package flycheck
-  :defer t
   :config (global-flycheck-mode))
 
 ;; Language Server Protocol

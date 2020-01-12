@@ -20,18 +20,18 @@
 (which-key-declare-prefixes
   "SPC g" "Magit")
 
-(general-create-definer memacs/magit-prefix
+(general-create-definer memacs/version-control-prefix
   :states '(normal insert emacs)
   :prefix "SPC g"
   :non-normal-prefix "M-SPC g")
 
-(memacs/magit-prefix
-  "s" '(magit-status :which-key "Status"))
+(memacs/version-control-prefix
+  "s" '(magit-status :which-key "Status")
+  "g" '(diff-hl-mode :which-key "Gutter"))
 
 (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
 
-(evil-set-initial-state 'magit-mode 'emacs)
-(evil-add-hjkl-bindings magit-mode-map 'emacs
+(memacs/veemacs-state magit-mode
   (kbd "SPC")     #'memacs-global-prefix-map
   (kbd "w")       #'evil-forward-word-begin
   (kbd "b")       #'evil-backward-word-begin
@@ -40,5 +40,7 @@
   (kbd "C-d")     #'evil-scroll-down
   (kbd "C-u")     #'evil-scroll-up
   (kbd "}")       #'evil-forward-paragraph
-  (kbd "{")       #'evil-backward-paragraph)
+  (kbd "{")       #'evil-backward-paragraph
+  (kbd "x")       #'magit-discard-hunk)
+
 ;;; version-control ends here

@@ -25,8 +25,7 @@
 (memacs/file-prefix
   "t" '(neotree-toggle :which-key "Tree"))
 
-(evil-set-initial-state 'neotree-mode 'emacs)
-(evil-add-hjkl-bindings neotree-mode-map 'emacs
+(memacs/veemacs-state neotree-mode
   (kbd "SPC") #'memacs-global-prefix-map
   (kbd "w")   #'evil-forward-word-begin
   (kbd "b")   #'evil-backward-word-begin
