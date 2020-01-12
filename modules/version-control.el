@@ -41,6 +41,6 @@
   (kbd "C-u")     #'evil-scroll-up
   (kbd "}")       #'evil-forward-paragraph
   (kbd "{")       #'evil-backward-paragraph
-  (kbd "x")       #'magit-discard-hunk)
+  (kbd "x")       #'magit-discard)
 
 ;;; version-control ends here

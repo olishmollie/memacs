@@ -11,7 +11,7 @@
   :states '(normal insert emacs visual visual-line)
   :prefix "SPC"
   :non-normal-prefix "M-SPC"
-  :prefix-map 'memacs-global-prefix-map)
+  :prefix-command 'memacs-global-prefix-map)
 
 (memacs/global-prefix
   "!"   '(shell-command :which-key "Shell Command")
