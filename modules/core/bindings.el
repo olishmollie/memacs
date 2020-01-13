@@ -32,7 +32,7 @@
 
 (memacs/buffer-prefix
  "b"   '(ivy-switch-buffer :which-key "Switch Buffer")
- "d"   '(kill-this-buffer :which-key "Kill Buffer")
+ "d"   '(evil-kill-buffer :which-key "Kill Buffer")
  "l"   '(list-buffers :which-key "List Buffers")
  "n"   '(next-buffer :which-key "Next Buffer")
  "m"   '((lambda () (interactive) (switch-to-buffer "*Messages*")) :which-key "*Messages*")
