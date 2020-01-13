@@ -53,6 +53,7 @@
     :non-normal-prefix "M-SPC m n")
   (memacs/latex-narrowing-prefix
     "g" '(TeX-narrow-to-group :which-key "Narrow to Group")
-    "e" '(LaTeX-narrow-to-environment) :which-key "Narrow to Environment"))
+    "e" '(LaTeX-narrow-to-environment :which-key "Narrow to Environment")
+    "w" '(widen :which-key "Widen")))
 
 ;;; latex.el ends here
