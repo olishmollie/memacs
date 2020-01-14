@@ -1,0 +1,25 @@
+;; -*- emacs-lisp -*- <20/01/14 14:01:16 /Users/ajbond/.emacs.d/tramp>
+;; Tramp connection history.  Don't change this file.
+;; You can delete it, forcing Tramp to reapply the checks.
+
+(((tramp-file-name "ssh" "ajbond" nil "compute.cs.tamu.edu" nil nil nil)
+  ("uname" "Linux 3.10.0-1062.9.1.el7.x86_64")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("test" "test")
+  ("remote-path"
+   ("/usr/bin" "/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("~" "/home/ugrads/a/ajbond")
+  ("file-exists" "test -e")
+  ("case-insensitive" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("readlink" "\\readlink")
+  ("stat" "env QUOTING_STYLE=locale \\stat")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 228003829)
+  ("gid-string" "ajbond")
+  ("git" "\\git")
+  ("ls" "/usr/bin/ls --color=never")
+  ("uid-integer" 228003829)))
