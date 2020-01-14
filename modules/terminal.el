@@ -11,7 +11,7 @@
   "Open a shell in the project root if it exists."
   (interactive)
   (let ((default-directory (or (projectile-project-root) default-directory)))
-      (vterm)))
+    (vterm)))
 
 (use-package vterm)
 (use-package shell-pop
