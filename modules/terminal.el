@@ -2,7 +2,6 @@
 
 ;;; Commentary:
 
-
 ;;; Code:
 
 ;; TODO: This function requires starting a new shell in order to open at the
