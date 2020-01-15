@@ -5,3 +5,4 @@ backups/
 elpa/
 projectile-bookmarks.eld
 transient
+tramp

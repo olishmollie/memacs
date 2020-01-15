@@ -12,13 +12,29 @@
   (let ((default-directory (or (projectile-project-root) default-directory)))
     (vterm)))
 
+(defun memacs/clear-vterm ()
+  "Clears the vterm buffer."
+  (interactive)
+  (term-send-raw-string "\C-l")
+  (vterm-clear-scrollback))
+
+(defun memacs/add-vterm-keybindings ()
+  "Add vterm keybindings."
+  (when (eq system-type 'darwin)
+    (general-define-key
+    :keymaps 'vterm-mode-map
+    :states 'emacs
+    "s-k" #'memacs/clear-vterm)))
+
 (use-package vterm)
 (use-package shell-pop
   :after vterm
-  :init (setq shell-pop-universal-key "M-'"
-              shell-pop-full-span t
-              shell-pop-autocd-to-working-dir nil
-	      shell-pop-shell-type '("vterm" "*vterm*" #'memacs/shell-pop)))
+  :init
+  (setq shell-pop-universal-key "M-'"
+        shell-pop-full-span t
+        shell-pop-autocd-to-working-dir nil
+        shell-pop-shell-type '("vterm" "*vterm*" #'memacs/shell-pop))
+  (add-hook 'vterm-mode-hook #'memacs/add-vterm-keybindings))
 
 (evil-set-initial-state 'vterm-mode 'emacs)
 
