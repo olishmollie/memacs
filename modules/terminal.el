@@ -6,11 +6,22 @@
 
 ;; TODO: This function requires starting a new shell in order to open at the
 ;; project root. I'd like to not have to do that.
+
+(defun memacs/ssh ()
+  "Ssh into a remote shell."
+  (let ((user (file-remote-p default-directory 'user))
+        (host (file-remote-p default-directory 'host)))
+    (term-send-raw-string (concat "ssh " user "@" host "\n"))))
+
 (defun memacs/shell-pop()
   "Open a shell in the project root if it exists."
   (interactive)
   (let ((default-directory (or (projectile-project-root) default-directory)))
-    (vterm)))
+    (if (file-remote-p default-directory)
+        (progn
+          (vterm)
+          (memacs/ssh))
+      (vterm))))
 
 (defun memacs/clear-vterm ()
   "Clears the vterm buffer."
