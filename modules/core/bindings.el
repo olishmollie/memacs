@@ -31,7 +31,7 @@
   :non-normal-prefix "M-SPC b")
 
 (memacs/buffer-prefix
- "b"   '(ivy-switch-buffer :which-key "Switch Buffer")
+ "b"   '(switch-buffer :which-key "Switch Buffer")
  "d"   '(evil-delete-buffer :which-key "Kill Buffer")
  "l"   '(list-buffers :which-key "List Buffers")
  "n"   '(next-buffer :which-key "Next Buffer")
@@ -46,7 +46,7 @@
   :non-normal-prefix "M-SPC f")
 
 (memacs/file-prefix
- "f" '(counsel-find-file :which-key "Find File"))
+ "f" '(find-file :which-key "Find File"))
 
 (general-create-definer memacs/help-prefix
   :states '(normal insert emacs visual visual-line)
@@ -56,13 +56,13 @@
 (memacs/help-prefix
  "?" '(help-for-help :which-key "Help")
  "." '(display-local-help :which-key "Local Help")
- "a" '(counsel-apropos :which-key "Search")
- "f" '(counsel-describe-function :which-key "Describe Function")
+ "a" '(apropos :which-key "Search")
+ "f" '(describe-function :which-key "Describe Function")
  "k" '(describe-key :which-key "Describe Key")
  "m" '(describe-mode :which-key "Describe Mode")
  "p" '(describe-package :which-key "Describe Package")
  "s" '(describe-syntax :which-key "Describe Syntax")
- "v" '(counsel-describe-variable :which-key "Describe Variable"))
+ "v" '(describe-variable :which-key "Describe Variable"))
 
 (general-create-definer memacs/project-prefix
   :states '(normal insert emacs visual visual-line)
@@ -102,7 +102,7 @@
   `(progn (evil-set-initial-state (quote ,mode) 'emacs)
           (evil-add-hjkl-bindings ,(intern (concat (symbol-name mode) "-map")) 'emacs ,@bindings)))
 
-(dolist (mode '(help-mode Buffer-menu-mode dired-mode compilation-mode custom-mode completion-list-mode))
+(dolist (mode '(help-mode Buffer-menu-mode package-menu-mode dired-mode compilation-mode custom-mode completion-list-mode))
   (eval `(memacs/veemacs-state ,mode
                                (kbd "SPC")     #'memacs-global-prefix-map
                                (kbd "/")       #'evil-search-forward

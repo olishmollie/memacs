@@ -55,11 +55,6 @@
   :defer t
   :config (which-key-mode))
 
-;; Incremental Completion Framework
-(use-package counsel
-  :init (setq ivy-use-selectable-prompt t)
-  :config (ivy-mode t))
-
 ;; Project Management
 (use-package projectile
   :init (setq projectile-project-search-path memacs-project-directory)
