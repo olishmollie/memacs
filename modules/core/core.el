@@ -31,6 +31,11 @@
 (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'prog-mode-hook #'linum-mode)
 
+;; ido
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
 ;; GDB
 (setq gdb-many-windows t)
 (setq gdb-show-main t)

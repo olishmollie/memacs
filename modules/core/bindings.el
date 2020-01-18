@@ -117,4 +117,14 @@
                                (kbd "}")       #'evil-forward-paragraph
                                (kbd "{")       #'evil-backward-paragraph)))
 
+;; Ido bindings
+(defun memacs/add-ido-keybindings ()
+  "Add ido keybindings."
+  (define-key ido-completion-map (kbd "C-n") #'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") #'ido-prev-match)
+  (define-key ido-completion-map (kbd "TAB") #'ido-next-match)
+  (define-key ido-completion-map (kbd "<backtab>") #'ido-prev-match))
+
+(add-hook 'ido-setup-hook #'memacs/add-ido-keybindings)
+
 ;;; bindings.el ends here
