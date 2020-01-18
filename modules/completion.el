@@ -4,12 +4,21 @@
 
 ;;; Code:
 
+(defun memacs/company-init ()
+  "Initialize company mode."
+  (add-hook 'prog-mode-hook
+            (lambda ()
+              (if (not (file-remote-p default-directory))
+                  (company-mode)))))
+
 (use-package company
   :defer t
   :init
   (setq company-minimum-prefix-length 1
 	company-selection-wrap-around t)
-  :config (global-company-mode))
+  :config
+  (add-hook 'company-mode-hook #'memacs/add-company-keybindings)
+  (memacs/company-init))
 
 (defun memacs/add-company-keybindings ()
   "Add keybindings to company-mode."
@@ -20,6 +29,5 @@
   (define-key company-search-map (kbd "C-n") #'company-select-next)
   (define-key company-search-map (kbd "C-p") #'company-select-previous))
 
-(add-hook 'company-mode-hook #'memacs/add-company-keybindings)
 
 ;;; completion ends here
