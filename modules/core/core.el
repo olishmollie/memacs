@@ -31,6 +31,10 @@
 (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'prog-mode-hook #'linum-mode)
 
+;; GDB
+(setq gdb-many-windows t)
+(setq gdb-show-main t)
+
 ;; Backups
 (if (not (file-exists-p memacs-backup-directory))
     (make-directory memacs-backup-directory t))
