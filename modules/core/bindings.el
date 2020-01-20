@@ -31,7 +31,7 @@
   :non-normal-prefix "M-SPC b")
 
 (memacs/buffer-prefix
- "b"   '(switch-buffer :which-key "Switch Buffer")
+ "b"   '(switch-to-buffer :which-key "Switch Buffer")
  "d"   '(evil-delete-buffer :which-key "Kill Buffer")
  "l"   '(list-buffers :which-key "List Buffers")
  "n"   '(next-buffer :which-key "Next Buffer")
