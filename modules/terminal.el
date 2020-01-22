@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+;; TODO: This is trash. Need to find a better way.
 (defun memacs/ssh ()
   "Ssh into a remote shell.
 NOTE: `default-directory' must be a remote file."
@@ -48,8 +49,8 @@ remote server and cd to the correct directory."
         shell-pop-full-span t
         shell-pop-autocd-to-working-dir nil
         shell-pop-shell-type '("vterm" "*vterm*" #'memacs/shell-pop))
+  (add-hook 'shell-pop-in-hook (lambda () (evil-set-initial-state 'vterm-mode 'emacs)))
+  (add-hook 'shell-pop-out-hook (lambda () (evil-set-initial-state 'vterm-mode 'insert)))
   (add-hook 'vterm-mode-hook #'memacs/add-vterm-keybindings))
-
-(evil-set-initial-state 'vterm-mode 'emacs)
 
 ;;; terminal ends here

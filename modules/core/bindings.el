@@ -102,7 +102,13 @@
   `(progn (evil-set-initial-state (quote ,mode) 'emacs)
           (evil-add-hjkl-bindings ,(intern (concat (symbol-name mode) "-map")) 'emacs ,@bindings)))
 
-(dolist (mode '(help-mode Buffer-menu-mode package-menu-mode dired-mode compilation-mode custom-mode completion-list-mode))
+(dolist (mode '(Buffer-menu-mode
+                compilation-mode
+                completion-list-mode
+                custom-mode
+                dired-mode
+                help-mode
+                package-menu-mode))
   (eval `(memacs/veemacs-state ,mode
                                (kbd "SPC")     #'memacs-global-prefix-map
                                (kbd "/")       #'evil-search-forward
@@ -122,8 +128,7 @@
   "Add ido keybindings."
   (define-key ido-completion-map (kbd "C-n") #'ido-next-match)
   (define-key ido-completion-map (kbd "C-p") #'ido-prev-match)
-  (define-key ido-completion-map (kbd "TAB") #'ido-next-match)
-  (define-key ido-completion-map (kbd "<backtab>") #'ido-prev-match))
+  (define-key ido-completion-map (kbd "TAB") #'ido-exit-minibuffer))
 
 (add-hook 'ido-setup-hook #'memacs/add-ido-keybindings)
 

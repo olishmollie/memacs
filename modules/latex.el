@@ -7,9 +7,12 @@
 (use-package tex
   :defer t
   :ensure auctex
-  :config
+  :init
   (setq TeX-clean-confirm nil)
+  :config
   (add-hook 'LaTeX-mode-hook #'memacs/add-latex-bindings))
+(use-package latex-preview-pane
+  :commands (latex-preview-pane-mode))
 
 (defun memacs/latex-compile()
   "Compile latex file, clean intermediate files, and delete extra buffers."
@@ -33,6 +36,7 @@
     "`" '(TeX-next-error :whick-key "Display Error")
     "a" '(memacs/latex-compile :which-key "Compile")
     "c" '(TeX-clean :which-key "Clean")
+    "p" '(latex-preview-pane-mode :which-key "Preview")
     "v" '(TeX-view :which-key "View"))
 
   (general-create-definer memacs/latex-environments-prefix

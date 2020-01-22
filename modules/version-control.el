@@ -33,14 +33,10 @@
 
 (memacs/veemacs-state magit-mode
   (kbd "SPC")     #'memacs-global-prefix-map
-  (kbd "w")       #'evil-forward-word-begin
-  (kbd "b")       #'evil-backward-word-begin
   (kbd "gg")      #'beginning-of-buffer
   (kbd "G")       #'end-of-buffer
-  (kbd "C-d")     #'evil-scroll-down
-  (kbd "C-u")     #'evil-scroll-up
   (kbd "}")       #'evil-forward-paragraph
   (kbd "{")       #'evil-backward-paragraph
-  (kbd "x")       #'magit-discard)
+  (kbd "C-k")     #'magit-discard)
 
 ;;; version-control ends here

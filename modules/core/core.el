@@ -3,6 +3,8 @@
 ;;; Commentary:
 
 ;;; Code:
+(server-start)
+
 (defvar memacs-modules-directory (concat user-emacs-directory "modules/"))
 (defvar memacs-backup-directory (concat user-emacs-directory "backups"))
 (defvar memacs-custom-file (concat memacs-modules-directory "custom.el"))
