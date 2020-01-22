@@ -18,7 +18,7 @@
     (kill-buffer buffer)))
 
 (which-key-declare-prefixes
-  "SPC g" "Magit")
+  "SPC g" "Version Control")
 
 (general-create-definer memacs/version-control-prefix
   :states '(normal insert emacs)
@@ -26,8 +26,9 @@
   :non-normal-prefix "M-SPC g")
 
 (memacs/version-control-prefix
-  "s" '(magit-status :which-key "Status")
-  "g" '(diff-hl-mode :which-key "Gutter"))
+  "d" '(magit-dispatch :which-key "Dispatch")
+  "g" '(diff-hl-mode :which-key "Gutter")
+  "s" '(magit-status :which-key "Status"))
 
 (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
 
