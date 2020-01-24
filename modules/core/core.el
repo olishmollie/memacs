@@ -3,7 +3,9 @@
 ;;; Commentary:
 
 ;;; Code:
-(server-start)
+(load "server")
+(unless (server-running-p)
+  (server-start))
 
 (defvar memacs-modules-directory (concat user-emacs-directory "modules/"))
 (defvar memacs-backup-directory (concat user-emacs-directory "backups"))
@@ -57,7 +59,8 @@
 (defun memacs/load-core-modules ()
   "Load MeMacs core modules.  Order is important."
   (load-file (concat memacs-modules-directory "core/packages.el"))
-  (load-file (concat memacs-modules-directory "core/bindings.el")))
+  (load-file (concat memacs-modules-directory "core/bindings.el"))
+  (load-file memacs-custom-file))
 
 (memacs/load-core-modules)
 

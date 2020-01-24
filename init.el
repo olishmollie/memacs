@@ -13,6 +13,7 @@
 		       terminal
 		       mode-line
                        c-c++
+                       javascript
                        latex))
 
 (dolist (module memacs-modules)

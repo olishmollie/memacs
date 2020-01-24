@@ -13,19 +13,21 @@ NOTE: `default-directory' must be a remote file."
         (path (file-remote-p default-directory 'localname)))
     (vterm-send-string (concat "ssh -t " user "@" host " \"cd " path "; \\$SHELL -l\"; \n \C-l"))))
 
-;; TODO: This function requires starting a new shell in order to open at the
-;; project root. I'd like to not have to do that.
-(defun memacs/shell-pop()
-  "Open a shell in the project root if it exists.
-If `default-directory' is a remote file, ssh to the
-remote server and cd to the correct directory."
+(defun memacs/shell-pop ()
+  "Open a shell, trying to respect default directory."
+  (interactive)
+  ;; (let ((default-directory (or (projectile-project-root) default-directory)))
+  (if (file-remote-p default-directory)
+      (progn
+        (vterm)
+        (memacs/ssh))
+    (vterm)))
+
+(defun memacs/shell-pop-in-project-root ()
+  "Open a shell in the project root, if it exists."
   (interactive)
   (let ((default-directory (or (projectile-project-root) default-directory)))
-    (if (file-remote-p default-directory)
-        (progn
-          (vterm)
-          (memacs/ssh))
-      (vterm))))
+    (shell-pop nil)))
 
 (defun memacs/clear-vterm ()
   "Clears the vterm buffer."
@@ -51,6 +53,8 @@ remote server and cd to the correct directory."
         shell-pop-shell-type '("vterm" "*vterm*" #'memacs/shell-pop))
   (add-hook 'shell-pop-in-hook (lambda () (evil-set-initial-state 'vterm-mode 'emacs)))
   (add-hook 'shell-pop-out-hook (lambda () (evil-set-initial-state 'vterm-mode 'insert)))
-  (add-hook 'vterm-mode-hook #'memacs/add-vterm-keybindings))
+  (add-hook 'vterm-mode-hook #'memacs/add-vterm-keybindings)
+  (memacs/project-prefix
+    "t" '(memacs/shell-pop-in-project-root :which-key "Terminal")))
 
 ;;; terminal ends here
