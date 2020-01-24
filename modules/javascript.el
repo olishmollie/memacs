@@ -45,9 +45,9 @@
     "r" '(lsp-find-references :which-key "References")
     "t" '(lsp-goto-type-definition :which-key "Type Definition")))
 
-(add-hook 'before-save-hook #'memacs/js-format-on-save nil t)
 (add-hook 'js-mode-hook
           (lambda ()
+            (add-hook 'before-save-hook #'memacs/js-format-on-save nil t)
             (memacs/add-js-lsp-keybindings)))
 
 ;;; javascript.el ends here

@@ -50,6 +50,6 @@ Try setting it as a dir-local.")
     (add-hook 'before-save-hook #'memacs/clang-format-on-save nil t))
 
 (add-hook 'c-mode-common-hook #'memacs/init-c-c++-mode)
-(add-hook 'lsp-mode-hook #'memacs/init-c-c++-lsp-mode)
+(add-hook 'c-mode-common-hook #'memacs/init-c-c++-lsp-mode)
 
 ;;; c-c++.el ends here
