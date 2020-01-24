@@ -65,8 +65,7 @@
 (defun memacs/load-core-modules ()
   "Load MeMacs core modules.  Order is important."
   (load-file (concat memacs-modules-directory "core/packages.el"))
-  (load-file (concat memacs-modules-directory "core/bindings.el"))
-  (load-file memacs-custom-file))
+  (load-file (concat memacs-modules-directory "core/bindings.el")))
 
 (memacs/load-core-modules)
 

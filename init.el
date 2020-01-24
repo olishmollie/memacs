@@ -7,14 +7,15 @@
 
 (setq memacs-project-directory "~/Dev/")
 
-(setq memacs-modules '(filetree
-		       version-control
+(setq memacs-modules '(c-c++
+                       custom
 		       completion
-		       terminal
-		       mode-line
-                       c-c++
+                       filetree
                        javascript
-                       latex))
+                       latex
+		       mode-line
+		       terminal
+		       version-control))
 
 (dolist (module memacs-modules)
   (memacs/load-module module))
