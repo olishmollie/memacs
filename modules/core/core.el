@@ -52,6 +52,12 @@
 ;; Delete trailing whitespace
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
 
+;; Use tabs in shell-script mode
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (setq tab-width 4)
+            (setq indent-tabs-mode t)))
+
 (defun memacs/load-module (module)
   "Load MODULE into MeMacs."
   (load-file (concat memacs-modules-directory (symbol-name module) ".el")))
