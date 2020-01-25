@@ -4,10 +4,7 @@
 
 ;;; Code:
 
-(use-package prettier-js
-  :init
-  (add-hook 'js-mode-hook #'prettier-js-mode)
-  (add-hook 'web-mode #'prettier-js-mode))
+(use-package prettier-js)
 
 (defvar memacs-enable-js-format-on-save t
   "If non-nil, automatically format a JavaScript buffer on save.")
