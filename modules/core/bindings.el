@@ -46,7 +46,8 @@
   :non-normal-prefix "M-SPC f")
 
 (memacs/file-prefix
- "f" '(find-file :which-key "Find File"))
+  "f" '(find-file :which-key "Find File")
+  "w" '(evil-save :which-key "Write File"))
 
 (general-create-definer memacs/help-prefix
   :states '(normal insert emacs visual visual-line)
