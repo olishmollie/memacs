@@ -41,16 +41,13 @@ Try setting it as a dir-local.")
     "r" '(lsp-find-references :which-key "References")
     "t" '(lsp-goto-type-definition :which-key "Type Definition")))
 
-(defun memacs/init-c-c++-mode ()
-  "Initialize MeMacs C/C++ mode."
-    (setq c-basic-offset 4))
-
 (defun memacs/init-c-c++-lsp-mode ()
     (memacs/add-c-c++-lsp-keybindings)
     (add-hook 'before-save-hook #'memacs/c-c++-format-on-save nil t))
 
 (add-hook 'c-mode-common-hook
           (lambda ()
+            (setq c-basic-offset 4)
             (add-hook 'before-save-hook #'memacs/c-c++-format-on-save nil t)
             (memacs/add-c-c++-lsp-keybindings)))
 
