@@ -8,7 +8,8 @@
     (prettier-js which-key vterm use-package shell-pop projectile neotree lsp-ui lsp-ivy latex-preview-pane general flycheck exec-path-from-shell evil-surround evil-magit evil-commentary doom-themes doom-modeline diff-hl company-lsp auto-package-update auctex)))
  '(safe-local-variable-values
    (quote
-    ((memacs-enable-js-format-on-save)
+    ((evil-shift-width . 2)
+     (memacs-enable-js-format-on-save)
      (js-indent-level . 2)
      (memacs-enable-clang-format-on-save)))))
 (custom-set-faces
