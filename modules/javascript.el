@@ -15,7 +15,7 @@
     (prettier-js)))
 
 (defun memacs/add-js-lsp-keybindings()
-  "Add C/C++ keybindings."
+  "Add JavaScript keybindings."
   (which-key-add-key-based-replacements
     "SPC m" "JavaScript"
     "SPC m j" "Jump To")

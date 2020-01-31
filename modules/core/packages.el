@@ -70,6 +70,7 @@
   :hook ((c-mode . lsp)
 	 (c++-mode . lsp)
 	 (js-mode . lsp)
+         (rust-mode . lsp)
 	 (lsp-mode . lsp-ui-mode))
   :init (setq lsp-prefer-flymake nil
               lsp-enable-snippet nil))

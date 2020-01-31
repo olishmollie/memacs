@@ -13,7 +13,7 @@ Try setting it as a dir-local.")
   (when memacs-enable-clang-format-on-save
     (lsp-format-buffer)))
 
-(defun memacs/add-c-c++-lsp-keybindings()
+(defun memacs/add-c-c++-lsp-keybindings ()
   "Add C/C++ keybindings."
   (which-key-add-key-based-replacements
     "SPC m" "C/C++"

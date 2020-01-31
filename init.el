@@ -14,6 +14,7 @@
                        javascript
                        latex
 		       mode-line
+                       rust
 		       terminal
 		       version-control))
 

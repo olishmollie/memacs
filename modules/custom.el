@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (prettier-js which-key vterm use-package shell-pop projectile neotree lsp-ui lsp-ivy latex-preview-pane general flycheck exec-path-from-shell evil-surround evil-magit evil-commentary doom-themes doom-modeline diff-hl company-lsp auto-package-update auctex)))
+    (rust-mode prettier-js which-key vterm use-package shell-pop projectile neotree lsp-ui lsp-ivy latex-preview-pane general flycheck exec-path-from-shell evil-surround evil-magit evil-commentary doom-themes doom-modeline diff-hl company-lsp auto-package-update auctex)))
  '(safe-local-variable-values
    (quote
     ((evil-shift-width . 2)
