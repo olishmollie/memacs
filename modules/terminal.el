@@ -49,10 +49,8 @@ NOTE: `default-directory' must be a remote file."
   :init
   (setq shell-pop-universal-key "M-'"
         shell-pop-full-span t
-        shell-pop-autocd-to-working-dir nil
         shell-pop-shell-type '("vterm" "*vterm*" #'memacs/shell-pop))
   (add-hook 'shell-pop-in-hook (lambda () (evil-set-initial-state 'vterm-mode 'emacs)))
-  (add-hook 'shell-pop-out-hook (lambda () (evil-set-initial-state 'vterm-mode 'insert)))
   (add-hook 'vterm-mode-hook #'memacs/add-vterm-keybindings)
   (memacs/project-prefix
     "t" '(memacs/shell-pop-in-project-root :which-key "Terminal")))

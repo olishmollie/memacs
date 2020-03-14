@@ -14,6 +14,7 @@
 (defvar memacs-modules nil)
 (defvar memacs-project-directory nil)
 
+;; Appearance/Basic Behavior
 (setq-default indent-tabs-mode nil)
 (setq inhibit-startup-screen t)
 (setq ring-bell-function 'ignore)
@@ -24,7 +25,6 @@
       (remq 'process-kill-buffer-query-function
             kill-buffer-query-functions))
 
-;; Appearance/Basic Behavior
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -34,6 +34,9 @@
 (global-auto-revert-mode t)
 (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'prog-mode-hook #'linum-mode)
+
+;; emacsclient
+(setq server-window #'pop-to-buffer)
 
 ;; ido
 (setq ido-enable-flex-matching t)
