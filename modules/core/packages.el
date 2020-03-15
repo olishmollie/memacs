@@ -64,13 +64,12 @@
 (use-package flycheck
   :config (global-flycheck-mode))
 
+;; Formatting
+(use-package clang-format)
+
 ;; Language Server Protocol
 (use-package lsp-mode
   :commands lsp
-  :hook ((c-mode . lsp)
-	 (c++-mode . lsp)
-	 (js-mode . lsp)
-         (rust-mode . lsp))
   :init (setq lsp-prefer-flymake nil
               lsp-enable-snippet nil))
 (use-package lsp-ui

@@ -44,6 +44,7 @@
 
 (add-hook 'js-mode-hook
           (lambda ()
+            (lsp)
             (add-hook 'before-save-hook #'memacs/js-format-on-save nil t)
             (memacs/add-js-lsp-keybindings)))
 

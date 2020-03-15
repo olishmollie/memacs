@@ -44,6 +44,7 @@
 
 (add-hook 'rust-mode-hook
           (lambda ()
+            (lsp)
             (add-hook 'before-save-hook #'memacs/rust-format-on-save)
             (memacs/add-rust-lsp-keybindings)))
 

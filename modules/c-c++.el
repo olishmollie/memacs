@@ -11,7 +11,7 @@ Try setting it as a dir-local.")
 (defun memacs/c-c++-format-on-save ()
   "If `memacs-enable-clang-format-on-save' is non-nil, format the current buffer with clang-format."
   (when memacs-enable-clang-format-on-save
-    (lsp-format-buffer)))
+    (clang-format-buffer)))
 
 (defun memacs/add-c-c++-lsp-keybindings ()
   "Add C/C++ keybindings."
@@ -47,6 +47,7 @@ Try setting it as a dir-local.")
 
 (add-hook 'c-mode-common-hook
           (lambda ()
+            (lsp)
             (setq c-basic-offset 4)
             (add-hook 'before-save-hook #'memacs/c-c++-format-on-save nil t)
             (memacs/add-c-c++-lsp-keybindings)))

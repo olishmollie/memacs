@@ -11,6 +11,8 @@
                        custom
 		       completion
                        filetree
+                       go
+                       java
                        javascript
                        latex
 		       mode-line
