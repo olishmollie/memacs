@@ -104,7 +104,7 @@
           (evil-add-hjkl-bindings ,(intern (concat (symbol-name mode) "-map")) 'emacs ,@bindings)))
 
 (dolist (mode '(Buffer-menu-mode
-                compilation
+                compilation-mode
                 completion-list-mode
                 custom-mode
                 dired-mode
