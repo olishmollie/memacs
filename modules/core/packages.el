@@ -58,7 +58,9 @@
 ;; Project Management
 (use-package projectile
   :init (setq projectile-project-search-path memacs-project-directory)
-  :config (projectile-mode t))
+  :config
+  (setq projectile-completion-system 'default)
+  (projectile-mode t))
 
 ;; Syntax Checking
 (use-package flycheck
