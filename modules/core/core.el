@@ -38,11 +38,10 @@
 ;; emacsclient
 (setq server-window #'pop-to-buffer)
 
-(icomplete-mode 1)
 ;; ido
-;; (setq ido-enable-flex-matching t)
-;; (setq ido-everywhere t)
-;; (ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 
 ;; GDB
 (setq gdb-many-windows t)

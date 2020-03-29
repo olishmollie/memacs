@@ -124,20 +124,13 @@
                                (kbd "}")       #'evil-forward-paragraph
                                (kbd "{")       #'evil-backward-paragraph)))
 
-;; icomplete bindings
-(define-key icomplete-minibuffer-map (kbd "C-n") #'icomplete-forward-completions)
-(define-key icomplete-minibuffer-map (kbd "C-p") #'icomplete-backward-completions)
-(define-key icomplete-minibuffer-map (kbd "<return>") #'icomplete-force-complete-and-exit)
-
-(add-hook 'icomplete-mode-hook #'memacs/add-icomplete-bindings)
-
 ;; Ido bindings
-;; (defun memacs/add-ido-keybindings ()
-;;   "Add ido keybindings."
-;;   (define-key ido-completion-map (kbd "C-n") #'ido-next-match)
-;;   (define-key ido-completion-map (kbd "C-p") #'ido-prev-match)
-;;   (define-key ido-completion-map (kbd "TAB") #'ido-exit-minibuffer))
+(defun memacs/add-ido-keybindings ()
+  "Add ido keybindings."
+  (define-key ido-completion-map (kbd "C-n") #'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") #'ido-prev-match)
+  (define-key ido-completion-map (kbd "TAB") #'ido-exit-minibuffer))
 
-;; (add-hook 'ido-setup-hook #'memacs/add-ido-keybindings)
+(add-hook 'ido-setup-hook #'memacs/add-ido-keybindings)
 
 ;;; bindings.el ends here
