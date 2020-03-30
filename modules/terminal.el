@@ -21,19 +21,17 @@ NOTE: `default-directory' must be a remote file."
       (progn
         (vterm)
         (memacs/ssh))
-    (vterm)))
-
-(defun memacs/shell-pop-in-project-root ()
-  "Open a shell in the project root, if it exists."
-  (interactive)
-  (let ((default-directory (or (projectile-project-root) default-directory)))
-    (shell-pop nil)))
+    (vterm)
+    (memacs/clear-vterm)))
 
 (defun memacs/clear-vterm ()
   "Clears the vterm buffer."
   (interactive)
   (term-send-raw-string "\C-l")
-  (vterm-clear-scrollback))
+  (vterm-clear-scrollback)
+  ;; workaround for annoying newline bug where entering a command will
+  ;; scroll to the bottom of the buffer, which leaves the prompt hidden.
+  (term-send-raw-string "\n"))
 
 (defun memacs/add-vterm-keybindings ()
   "Add vterm keybindings."
@@ -51,8 +49,6 @@ NOTE: `default-directory' must be a remote file."
         shell-pop-full-span t
         shell-pop-shell-type '("vterm" "*vterm*" #'memacs/shell-pop))
   (add-hook 'shell-pop-in-hook (lambda () (evil-set-initial-state 'vterm-mode 'emacs)))
-  (add-hook 'vterm-mode-hook #'memacs/add-vterm-keybindings)
-  (memacs/project-prefix
-    "t" '(memacs/shell-pop-in-project-root :which-key "Terminal")))
+  (add-hook 'vterm-mode-hook #'memacs/add-vterm-keybindings))
 
 ;;; terminal ends here
