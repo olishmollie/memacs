@@ -18,6 +18,7 @@
 		       mode-line
                        rust
 		       terminal
+                       verilog
 		       version-control))
 
 (dolist (module memacs-modules)
