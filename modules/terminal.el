@@ -21,17 +21,13 @@ NOTE: `default-directory' must be a remote file."
       (progn
         (vterm)
         (memacs/ssh))
-    (vterm)
-    (memacs/clear-vterm)))
+    (vterm)))
 
 (defun memacs/clear-vterm ()
   "Clears the vterm buffer."
   (interactive)
   (term-send-raw-string "\C-l")
-  (vterm-clear-scrollback)
-  ;; workaround for annoying newline bug where entering a command will
-  ;; scroll to the bottom of the buffer, which leaves the prompt hidden.
-  (term-send-raw-string "\n"))
+  (vterm-clear-scrollback))
 
 (defun memacs/add-vterm-keybindings ()
   "Add vterm keybindings."
