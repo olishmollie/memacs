@@ -25,10 +25,10 @@ Try setting it as a dir-local.")
     :prefix "SPC m"
     :non-normal-prefix "M-SPC m")
   (memacs/c-c++-prefix
-    "d" '(lsp-disconnect :which-key "Disconnect LSP")
-    "f" '(lsp-format-buffer :which-key "Format Buffer")
-    "r" '(lsp-rename :which-key "Rename")
-    "x" '(lsp-restart-workspace :which-key "Restart LSP"))
+   "d" '(lsp-disconnect :which-key "Disconnect LSP")
+   "f" '(lsp-format-buffer :which-key "Format Buffer")
+   "r" '(lsp-rename :which-key "Rename")
+   "x" '(lsp-restart-workspace :which-key "Restart LSP"))
 
   (general-create-definer memacs/c-c++-jump-prefix
     :states '(normal insert emacs visual visual-line)
@@ -36,20 +36,17 @@ Try setting it as a dir-local.")
     :prefix "SPC m j"
     :non-normal-prefix "M-SPC m j")
   (memacs/c-c++-jump-prefix
-    "d" '(lsp-find-definition :which-key "Definition")
-    "i" '(lsp-goto-implementation :which-key "Implementation")
-    "r" '(lsp-find-references :which-key "References")
-    "t" '(lsp-goto-type-definition :which-key "Type Definition")))
+   "d" '(lsp-find-definition :which-key "Definition")
+   "i" '(lsp-goto-implementation :which-key "Implementation")
+   "r" '(lsp-find-references :which-key "References")
+   "t" '(lsp-goto-type-definition :which-key "Type Definition")))
 
-(defun memacs/init-c-c++-lsp-mode ()
-    (memacs/add-c-c++-lsp-keybindings)
-    (add-hook 'before-save-hook #'memacs/c-c++-format-on-save nil t))
+(defun memacs/init-c-c++-mode ()
+  (lsp)
+  (setq c-basic-offset 4)
+  (memacs/add-c-c++-lsp-keybindings)
+  (add-hook 'before-save-hook #'memacs/c-c++-format-on-save nil t))
 
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (lsp)
-            (setq c-basic-offset 4)
-            (add-hook 'before-save-hook #'memacs/c-c++-format-on-save nil t)
-            (memacs/add-c-c++-lsp-keybindings)))
+(add-hook 'c-mode-common-hook #'memacs/init-c-c++-mode)
 
 ;;; c-c++.el ends here
