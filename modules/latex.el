@@ -10,7 +10,10 @@
   :init
   (setq TeX-clean-confirm nil)
   :config
-  (add-hook 'LaTeX-mode-hook #'memacs/add-latex-bindings))
+  ;; (add-hook 'LaTeX-mode-hook #'memacs/add-latex-bindings)
+  (add-hook 'LaTeX-mode-hook (lambda ()
+                               (memacs/add-latex-bindings)
+                               (setq evil-shift-width LaTeX-indent-level))))
 (use-package latex-preview-pane
   :commands (latex-preview-pane-mode))
 
