@@ -1,10 +1,14 @@
-;;; javascript.el --- JavaScript language support.
+;;; javascript.el --- JavaScript/Typescript language support.
 
 ;;; Commentary:
 
 ;;; Code:
 
 (use-package prettier-js)
+
+(use-package typescript-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode)))
 
 (defvar memacs-enable-js-format-on-save t
   "If non-nil, automatically format a JavaScript buffer on save.")
@@ -26,10 +30,10 @@
     :prefix "SPC m"
     :non-normal-prefix "M-SPC m")
   (memacs/js-prefix
-    "d" '(lsp-disconnect :which-key "Disconnect LSP")
-    "f" '(prettier-js :which-key "Format Buffer")
-    "r" '(lsp-rename :which-key "Rename")
-    "x" '(lsp-restart-workspace :which-key "Restart LSP"))
+   "d" '(lsp-disconnect :which-key "Disconnect LSP")
+   "f" '(prettier-js :which-key "Format Buffer")
+   "r" '(lsp-rename :which-key "Rename")
+   "x" '(lsp-restart-workspace :which-key "Restart LSP"))
 
   (general-create-definer memacs/js-jump-prefix
     :states '(normal insert emacs visual visual-line)
@@ -37,15 +41,18 @@
     :prefix "SPC m j"
     :non-normal-prefix "M-SPC m j")
   (memacs/js-jump-prefix
-    "d" '(lsp-find-definition :which-key "Definition")
-    "i" '(lsp-goto-implementation :which-key "Implementation")
-    "r" '(lsp-find-references :which-key "References")
-    "t" '(lsp-goto-type-definition :which-key "Type Definition")))
+   "d" '(lsp-find-definition :which-key "Definition")
+   "i" '(lsp-goto-implementation :which-key "Implementation")
+   "r" '(lsp-find-references :which-key "References")
+   "t" '(lsp-goto-type-definition :which-key "Type Definition")))
 
-(add-hook 'js-mode-hook
-          (lambda ()
-            (lsp)
-            (add-hook 'before-save-hook #'memacs/js-format-on-save nil t)
-            (memacs/add-js-lsp-keybindings)))
+(defun memacs/init-js-modes ()
+  "Init js and ts modes."
+  (lsp)
+  (add-hook 'before-save-hook #'memacs/js-format-on-save nil t)
+  (memacs/add-js-lsp-keybindings))
+
+(add-hook 'js-mode-hook #'memacs/init-js-modes)
+(add-hook 'typescript-mode-hook #'memacs/init-js-modes)
 
 ;;; javascript.el ends here
