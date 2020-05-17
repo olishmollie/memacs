@@ -17,7 +17,8 @@ Try setting it as a dir-local.")
   "Add C/C++ keybindings."
   (which-key-add-key-based-replacements
     "SPC m" "C/C++"
-    "SPC m j" "Jump To")
+    "SPC m j" "Jump To"
+    "SPC m e" "Errors")
 
   (general-create-definer memacs/c-c++-prefix
     :states '(normal insert emacs visual visual-line)
@@ -39,9 +40,20 @@ Try setting it as a dir-local.")
    "d" '(lsp-find-definition :which-key "Definition")
    "i" '(lsp-goto-implementation :which-key "Implementation")
    "r" '(lsp-find-references :which-key "References")
-   "t" '(lsp-goto-type-definition :which-key "Type Definition")))
+   "t" '(lsp-goto-type-definition :which-key "Type Definition"))
+
+   (general-create-definer memacs/c-c++-errors-prefix
+     :states '(normal insert emacs visual visual-line)
+     :keymaps 'local
+     :prefix "SPC m e"
+     :non-normal-prefix "M-SPC m e")
+   (memacs/c-c++-errors-prefix
+    "l" '(flycheck-list-errors :which-key "List Errors")
+    "n" '(flycheck-next-error :which-key "Next Error")
+    "p" '(flycheck-previous-error :which-key "Previous Error")))
 
 (defun memacs/init-c-c++-mode ()
+  "Initialize c-c++ mode."
   (lsp)
   (setq c-basic-offset 4)
   (memacs/add-c-c++-lsp-keybindings)

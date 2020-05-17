@@ -35,9 +35,6 @@
 (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'prog-mode-hook #'linum-mode)
 
-;; emacsclient
-(setq server-window #'pop-to-buffer)
-
 ;; ido
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
