@@ -3,6 +3,7 @@
 ;;; Commentary:
 
 ;;; Code:
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("org"   . "http://orgmode.org/elpa/")
@@ -26,7 +27,7 @@
 ;; Auto Update Packages
 (use-package auto-package-update
   :init (setq auto-package-update-delete-old-versions t
-		auto-package-update-hide-results t)
+              auto-package-update-hide-results t)
   :config (auto-package-update-maybe))
 
 ;; Copy Shell Env to GUI Emacs
@@ -41,8 +42,10 @@
 
 ;; Vim Emulation
 (use-package evil
-  :init (setq evil-want-C-u-scroll t)
-  :config (evil-mode t))
+  :init
+  (setq evil-want-C-u-scroll t
+        evil-emacs-state-cursor 'bar)
+:config (evil-mode t))
 (use-package evil-commentary
   :after evil
   :config (evil-commentary-mode t))
@@ -83,5 +86,6 @@
 ;; 		       (face-attribute 'default :background)))
 (use-package company-lsp)
 ;; (use-package lsp-ivy)
+
 
 ;;; packages.el ends here

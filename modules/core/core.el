@@ -3,6 +3,7 @@
 ;;; Commentary:
 
 ;;; Code:
+(require 'server)
 (load "server")
 (unless (server-running-p)
   (server-start))
@@ -28,19 +29,21 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-(add-to-list 'default-frame-alist '(font . "Source Code Pro-14"))
 (electric-pair-mode t)
 (show-paren-mode t)
+(column-number-mode t)
 (global-auto-revert-mode t)
 (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'prog-mode-hook #'linum-mode)
 
 ;; ido
+(require 'ido)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
 
 ;; GDB
+(require 'gdb-mi)
 (setq gdb-many-windows t)
 (setq gdb-show-main t)
 
@@ -62,12 +65,12 @@
   "Load MODULE into MeMacs."
   (load-file (concat memacs-modules-directory (symbol-name module) ".el")))
 
-(defun memacs/load-core-modules ()
+(defun memacs/load-core ()
   "Load MeMacs core modules.  Order is important."
   (load-file (concat memacs-modules-directory "core/packages.el"))
   (load-file (concat memacs-modules-directory "core/bindings.el")))
 
-(memacs/load-core-modules)
+(memacs/load-core)
 
 (provide 'core)
 
