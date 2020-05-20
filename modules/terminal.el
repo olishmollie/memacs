@@ -4,47 +4,47 @@
 
 ;;; Code:
 
-;; TODO: This is trash. Need to find a better way.
-(defun memacs/ssh ()
-  "Ssh into a remote shell.
-NOTE: `default-directory' must be a remote file."
-  (let ((user (file-remote-p default-directory 'user))
-        (host (file-remote-p default-directory 'host))
-        (path (file-remote-p default-directory 'localname)))
-    (vterm-send-string (concat "ssh -t " user "@" host " \"cd " path "; \\$SHELL -l\"; \n \C-l"))))
+(use-package vterm)
+(use-package vterm-toggle)
 
-(defun memacs/shell-pop ()
-  "Open a shell, trying to respect default directory."
-  (interactive)
-  ;; (let ((default-directory (or (projectile-project-root) default-directory)))
-  (if (file-remote-p default-directory)
-      (progn
-        (vterm)
-        (memacs/ssh))
-    (vterm)))
+(require 'evil)
+(require 'vterm)
 
-(defun memacs/clear-vterm ()
-  "Clears the vterm buffer."
+(defvar memacs-terminal 'vterm)
+(defvar memacs-terminal-buffer-name "Terminal")
+
+(setq vterm-toggle-fullscreen-p nil)
+
+(add-to-list 'display-buffer-alist
+             '((lambda (bufname _)
+                 (with-current-buffer bufname
+                   (equal major-mode 'vterm-mode)))
+               (display-buffer-reuse-window display-buffer-at-bottom)
+               (reusable-frames . visible)
+               (window-height . 0.30)))
+
+(defun memacs/vterm-clear ()
+  "Clear vterm."
   (interactive)
-  (term-send-raw-string "\C-l")
+  (vterm-clear)
   (vterm-clear-scrollback))
 
-(defun memacs/add-vterm-keybindings ()
-  "Add vterm keybindings."
+(defun memacs/add-terminal-keybindings ()
+  "Add terminal keybindings."
   (when (eq system-type 'darwin)
-    (general-define-key
-    :keymaps 'vterm-mode-map
-    :states 'emacs
-    "s-k" #'memacs/clear-vterm)))
+    (define-key vterm-mode-map (kbd "s-k") #'memacs/vterm-clear)))
 
-(use-package vterm)
-(use-package shell-pop
-  :after vterm
-  :init
-  (setq shell-pop-universal-key "M-'"
-        shell-pop-full-span t
-        shell-pop-shell-type '("vterm" "*vterm*" #'memacs/shell-pop))
-  (add-hook 'shell-pop-in-hook (lambda () (evil-set-initial-state 'vterm-mode 'emacs)))
-  (add-hook 'vterm-mode-hook #'memacs/add-vterm-keybindings))
+(defun memacs/init-terminal ()
+  "Initialize vterm-mode."
+  (memacs/add-terminal-keybindings)
+  (evil-set-initial-state 'vterm-mode 'emacs))
+
+(defun memacs/toggle-terminal ()
+  "Show a terminal window if it exists, or create one."
+  (interactive)
+  (vterm-toggle))
+
+(add-hook 'vterm-mode-hook #'memacs/init-terminal)
+(global-set-key (kbd "M-'") #'memacs/toggle-terminal)
 
 ;;; terminal ends here
