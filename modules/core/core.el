@@ -3,6 +3,7 @@
 ;;; Commentary:
 
 ;;; Code:
+
 (require 'server)
 (load "server")
 (unless (server-running-p)
@@ -60,6 +61,18 @@
           (lambda ()
             (setq tab-width 4)
             (setq indent-tabs-mode t)))
+
+;; Remove completion buffer when finished with it
+(add-hook 'minibuffer-exit-hook
+          '(lambda ()
+             (let ((buffer "*Completions*"))
+               (and (get-buffer buffer)
+                    (kill-buffer buffer)))))
+
+(defadvice quit-window (before quit-window-always-kill)
+  "When running `quit-window', always kill the buffer."
+  (when (called-interactively-p 'interactive) (ad-set-arg 0 t)))
+(ad-activate 'quit-window)
 
 (defun memacs/load-module (module)
   "Load MODULE into MeMacs."
