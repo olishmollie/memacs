@@ -13,6 +13,7 @@
 (defvar memacs-terminal 'vterm)
 (defvar memacs-terminal-buffer-name "Terminal")
 
+(setq vterm-always-compile-module t)
 (setq vterm-toggle-fullscreen-p nil)
 
 (add-to-list 'display-buffer-alist
@@ -21,7 +22,7 @@
                    (equal major-mode 'vterm-mode)))
                (display-buffer-reuse-window display-buffer-at-bottom)
                (reusable-frames . visible)
-               (window-height . 0.30)))
+               (window-height . 0.35)))
 
 (defun memacs/vterm-clear ()
   "Clear vterm."

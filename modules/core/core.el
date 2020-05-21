@@ -29,6 +29,7 @@
 
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(menu-bar-mode -1)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (electric-pair-mode t)
 (show-paren-mode t)
@@ -62,7 +63,7 @@
             (setq tab-width 4)
             (setq indent-tabs-mode t)))
 
-;; Remove completion buffer when finished with it.
+;; Kill completion buffer after closing the minibuffer.
 (add-hook 'minibuffer-exit-hook
           '(lambda ()
              (let ((buffer "*Completions*"))
