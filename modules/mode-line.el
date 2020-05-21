@@ -54,9 +54,13 @@
 
 (defun memacs/mode-line-buffer-status ()
   "Mode line segment describing current buffer status."
-  (propertize (format-mode-line "%*") 'face (cond (buffer-read-only 'memacs-mode-line-yellow)
-                               ((buffer-modified-p) 'memacs-mode-line-red)
-                               (t 'memacs-mode-line-default))))
+  (cond ((derived-mode-p 'special-mode)
+         (propertize "Q" 'face 'memacs-mode-line-yellow))
+        (buffer-read-only
+         (propertize "%%" 'face 'memacs-mode-line-yellow))
+        ((buffer-modified-p)
+         (propertize "*" 'face 'memacs-mode-line-red))
+        (t (propertize "-" 'face 'memacs-mode-line-default))))
 
 (defun memacs/mode-line-short-file-name (file-name)
   "Shorten FILE-NAME to a reasonable length."
