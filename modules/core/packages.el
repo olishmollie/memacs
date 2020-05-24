@@ -43,8 +43,7 @@
 ;; Vim Emulation
 (use-package evil
   :init
-  (setq evil-want-C-u-scroll t
-        evil-emacs-state-cursor 'bar)
+  (setq evil-want-C-u-scroll t)
 :config (evil-mode t))
 (use-package evil-commentary
   :after evil
