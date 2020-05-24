@@ -14,4 +14,4 @@
             (setq tab-width 4)
             (add-hook 'before-save-hook #'gofmt-before-save)))
 
-;; go.el ends here
+;;; go.el ends here
