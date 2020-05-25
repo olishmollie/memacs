@@ -1,10 +1,11 @@
-;;; bindings.el --- MeMacs bindings.
+;;; bindings.el --- MeMacs core bindings.
 
 ;;; Commentary:
 ;;; A lightweight Spacemacs-like configuration.
 
 ;;; Code:
 
+(require 'ido)
 (require 'which-key)
 
 (general-create-definer memacs/global-prefix
@@ -91,92 +92,5 @@
  "k" '(evil-window-up :which-key "Move Up")
  "l" '(evil-window-right :which-key "Move Right")
  "o" '(delete-other-windows :which-key "Delete Others"))
-
-(defun memacs/create-prog-mode-prefix ()
-  "Create lsp keybindings based on current major mode."
-  (which-key-add-key-based-replacements
-    "SPC m" mode-name
-    "SPC m j" "Jump To"
-    "SPC m e" "Errors")
-
-  (general-create-definer memacs/prog-mode-prefix
-    :states '(normal insert emacs visual visual-line)
-    :prefix "SPC m"
-    :non-normal-prefix "M-SPC m")
-
-  (memacs/prog-mode-prefix
-   "d" '(lsp-disconnect :which-key "Disconnect LSP")
-   "f" '(lsp-format-buffer :which-key "Format Buffer")
-   "r" '(lsp-rename :which-key "Rename")
-   "x" '(lsp-restart-workspace :which-key "Restart LSP"))
-
-
-  (general-create-definer memacs/prog-mode-jump-prefix
-    :states '(normal insert emacs visual visual-line)
-    :keymaps 'local
-    :prefix "SPC m j"
-    :non-normal-prefix "M-SPC m j")
-
-  (memacs/prog-mode-jump-prefix
-   "d" '(lsp-find-definition :which-key "Definition")
-   "i" '(lsp-goto-implementation :which-key "Implementation")
-   "r" '(lsp-find-references :which-key "References")
-   "t" '(lsp-goto-type-definition :which-key "Type Definition"))
-
-  (general-create-definer memacs/prog-mode-errors-prefix
-    :states '(normal insert emacs visual visual-line)
-    :keymaps 'local
-    :prefix "SPC m e"
-    :non-normal-prefix "M-SPC m e")
-
-  (memacs/prog-mode-errors-prefix
-   "l" '(flycheck-list-errors :which-key "List Errors")
-   "n" '(flycheck-next-error :which-key "Next Error")
-   "p" '(flycheck-previous-error :which-key "Previous Error")))
-
-(add-hook 'prog-mode-hook #'memacs/create-prog-mode-prefix)
-
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
-(defmacro memacs/veemacs-state (mode &rest bindings)
-  "Force Emacs state in MODE while providing BINDINGS.
-
-  Many modes are more useful in Emacs state.  This macro
-  adds some essential vim keybindings to these modes while
-  maintaining the useful Emacs bindings."
-  `(progn (evil-set-initial-state (quote ,mode) 'emacs)
-          (evil-add-hjkl-bindings ,(intern (concat (symbol-name mode) "-map")) 'emacs ,@bindings)))
-
-(dolist (mode '(Buffer-menu-mode
-                compilation-mode
-                completion-list-mode
-                custom-mode
-                dired-mode
-                flycheck-error-list-mode
-                help-mode
-                package-menu-mode))
-  (eval `(memacs/veemacs-state ,mode
-                               (kbd "SPC")     #'memacs-global-prefix-map
-                               (kbd "/")       #'evil-search-forward
-                               (kbd "w")       #'evil-forward-word-begin
-                               (kbd "b")       #'evil-backward-word-begin
-                               (kbd "n")       #'evil-search-next
-                               (kbd "N")       #'evil-search-previous
-                               (kbd "gg")      #'beginning-of-buffer
-                               (kbd "G")       #'end-of-buffer
-                               (kbd "C-d")     #'evil-scroll-down
-                               (kbd "C-u")     #'evil-scroll-up
-                               (kbd "}")       #'evil-forward-paragraph
-                               (kbd "{")       #'evil-backward-paragraph)))
-
-;; Ido bindings
-(require 'ido)
-(defun memacs/add-ido-keybindings ()
-  "Add ido keybindings."
-  (define-key ido-completion-map (kbd "C-n") #'ido-next-match)
-  (define-key ido-completion-map (kbd "C-p") #'ido-prev-match)
-  (define-key ido-completion-map (kbd "TAB") #'ido-exit-minibuffer))
-
-(add-hook 'ido-setup-hook #'memacs/add-ido-keybindings)
 
 ;;; bindings.el ends here

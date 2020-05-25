@@ -59,32 +59,6 @@
 
 ;; Project Management
 (use-package projectile
-  :init (setq projectile-project-search-path memacs-project-directory)
-  :config
-  (projectile-mode t))
-
-;; Syntax Checking
-(use-package flycheck
-  :config (global-flycheck-mode))
-
-;; Formatting
-(use-package clang-format)
-
-;; Language Server Protocol
-(use-package lsp-mode
-  :commands lsp
-  :init (setq lsp-prefer-flymake nil
-              lsp-enable-snippet nil))
-;; (use-package lsp-ui
-;;   :after lsp
-;;   :init
-;;   (setq lsp-ui-flycheck-enable t
-;; 	lsp-ui-doc-position 'top)
-;;   :config
-;;   (set-face-background 'lsp-ui-doc-background
-;; 		       (face-attribute 'default :background)))
-(use-package company-lsp)
-;; (use-package lsp-ivy)
-
+  :config (projectile-mode t))
 
 ;;; packages.el ends here

@@ -84,7 +84,7 @@
     (let-alist (flycheck-count-errors flycheck-current-errors)
       (cond
        (.error (propertize (format "!%s" .error) 'face 'memacs-mode-line-red))
-       (.warning (propertize (format "!%s" .warning) 'face 'memacs-mode-line-warning-face))
+       (.warning (propertize (format "!%s" .warning) 'face 'memacs-mode-line-yellow))
        (t (propertize "-" 'face 'memacs-mode-line-green)))))
 
 ;; Add mode-line padding
