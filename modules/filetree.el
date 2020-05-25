@@ -22,11 +22,14 @@
   (when (fboundp #'doom-themes-neotree-config)
     (doom-themes-neotree-config)))
 
+(require 'neotree)
+
 (memacs/file-prefix
   "t" '(neotree-toggle :which-key "Tree"))
 
 (memacs/veemacs-state neotree-mode
   (kbd "SPC") #'memacs-global-prefix-map
+  (kbd "/")   #'evil-search-forward
   (kbd "w")   #'evil-forward-word-begin
   (kbd "b")   #'evil-backward-word-begin
   (kbd "gg")  #'beginning-of-buffer
@@ -36,10 +39,9 @@
   (kbd "}")   #'evil-forward-paragraph
   (kbd "{")   #'evil-backward-paragraph
   (kbd "x")   #'neotree-collapse-all
-  (kbd "c")   #'neotree-create-node
-  (kbd "d")   #'neotree-delete-node
-  (kbd "r")   #'neotree-rename-node
-  (kbd "/")   #'neotree-enter-vertical-split
-  (kbd "-")   #'neotree-enter-horizontal-split)
+  (kbd "C-n") #'neotree-create-node
+  (kbd "C-k") #'neotree-delete-node
+  (kbd "C-c") #'neotree-change-root
+  (kbd "C-r") #'neotree-rename-node)
 
 ;;; filetree ends here
