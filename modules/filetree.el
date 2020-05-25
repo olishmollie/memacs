@@ -22,8 +22,6 @@
   (when (fboundp #'doom-themes-neotree-config)
     (doom-themes-neotree-config)))
 
-(require 'neotree)
-
 (memacs/file-prefix
   "t" '(neotree-toggle :which-key "Tree"))
 

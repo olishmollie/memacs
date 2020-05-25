@@ -118,4 +118,4 @@
 (set-face-attribute 'memacs-mode-line-default nil
                     :inherit 'mode-line-face)
 
-;; ;;; mode-line ends here
+;;; mode-line ends here

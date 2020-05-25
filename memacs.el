@@ -21,6 +21,7 @@
 		       mode-line
                        rust
 		       terminal
+                       ;; themes
                        verilog
 		       version-control))
 

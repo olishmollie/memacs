@@ -10,10 +10,10 @@
                          ("gnu"   . "http://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
+(package-refresh-contents t)
 
 ;; Bootstrap `use-package`
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
 
@@ -34,11 +34,6 @@
 (use-package exec-path-from-shell
   :init (when (memq window-system '(mac ns x))
 	  (exec-path-from-shell-initialize)))
-
-;; Themes
-(use-package doom-themes
-  :config
-  (load-theme 'doom-one t))
 
 ;; Vim Emulation
 (use-package evil
