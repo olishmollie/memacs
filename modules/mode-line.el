@@ -96,15 +96,15 @@
 ;; Custom faces
 (make-face 'memacs-mode-line-yellow)
 (set-face-attribute 'memacs-mode-line-yellow nil
-                    :foreground "yellow")
+                    :inherit 'font-lock-variable-name-face)
 
 (make-face 'memacs-mode-line-red)
 (set-face-attribute 'memacs-mode-line-red nil
-                    :foreground "red")
+                    :inherit 'font-lock-comment-face)
 
 (make-face 'memacs-mode-line-green)
 (set-face-attribute 'memacs-mode-line-green nil
-                    :foreground "green")
+                    :inherit 'font-lock-type-face)
 
 (make-face 'memacs-mode-line-blue)
 (set-face-attribute 'memacs-mode-line-blue nil
@@ -112,7 +112,7 @@
 
 (make-face 'memacs-mode-line-purple)
 (set-face-attribute 'memacs-mode-line-purple nil
-                    :foreground "purple")
+                    :inherit 'font-lock-function-name-face)
 
 (make-face 'memacs-mode-line-default)
 (set-face-attribute 'memacs-mode-line-default nil
