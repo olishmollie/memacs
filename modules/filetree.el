@@ -22,10 +22,10 @@
   (when (fboundp #'doom-themes-neotree-config)
     (doom-themes-neotree-config)))
 
-(memacs/file-prefix
+(memacs-file-prefix
   "t" '(neotree-toggle :which-key "Tree"))
 
-(memacs/veemacs-state neotree-mode
+(memacs-veemacs-state neotree-mode
   (kbd "SPC") #'memacs-global-prefix-map
   (kbd "/")   #'evil-search-forward
   (kbd "w")   #'evil-forward-word-begin

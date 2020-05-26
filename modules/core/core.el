@@ -25,22 +25,22 @@
     package-menu-mode
     special-mode))
 
-(defun memacs/load-module (module)
+(defun memacs-load-module (module)
   "Load MODULE into MeMacs."
   (load-file (concat memacs-modules-directory (symbol-name module) ".el")))
 
-(defun memacs/load-core ()
+(defun memacs-load-core ()
   "Load MeMacs core modules.  Order is important."
   (load-file (concat memacs-modules-directory "core/packages.el"))
   (load-file (concat memacs-modules-directory "core/bindings.el")))
 
-(defun memacs/add-ido-keybindings ()
+(defun memacs-add-ido-keybindings ()
   "Add ido keybindings."
   (define-key ido-completion-map (kbd "C-n") #'ido-next-match)
   (define-key ido-completion-map (kbd "C-p") #'ido-prev-match)
   (define-key ido-completion-map (kbd "TAB") #'ido-exit-minibuffer))
 
-(defmacro memacs/veemacs-state (mode &rest bindings)
+(defmacro memacs-veemacs-state (mode &rest bindings)
   "Force Emacs state in MODE while providing BINDINGS.
 
   Many modes are more useful in Emacs state.  This macro
@@ -49,16 +49,16 @@
   `(progn (evil-set-initial-state (quote ,mode) 'emacs)
           (evil-add-hjkl-bindings ,(intern (concat (symbol-name mode) "-map")) 'emacs ,@bindings)))
 
-(defun memacs/major-mode-hook (mode)
+(defun memacs-major-mode-hook (mode)
   "Return the hook associated with MODE."
   (intern (concat (symbol-name mode) "-hook")))
 
-(defun memacs/create-major-mode-prefix ()
+(defun memacs-create-major-mode-prefix ()
   "Create a global major mode prefix based on MODE."
   (which-key-add-major-mode-key-based-replacements
     major-mode
     "SPC m" mode-name)
-    (general-create-definer memacs/major-mode-prefix
+    (general-create-definer memacs-major-mode-prefix
       :keymaps 'local
       :states '(normal insert emacs visual visual-line)
       :prefix "SPC m"

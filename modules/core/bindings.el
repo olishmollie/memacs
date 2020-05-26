@@ -8,13 +8,13 @@
 (require 'ido)
 (require 'which-key)
 
-(general-create-definer memacs/global-prefix
+(general-create-definer memacs-global-prefix
   :states '(normal insert emacs visual visual-line)
   :prefix "SPC"
   :non-normal-prefix "M-SPC"
   :prefix-command 'memacs-global-prefix-map)
 
-(memacs/global-prefix
+(memacs-global-prefix
   "!"   '(shell-command :which-key "Shell Command")
   ":"   '(eval-expression :which-key "Eval")
   "SPC" '(execute-extended-command :which-key "M-x"))
@@ -26,12 +26,12 @@
   "SPC p" "Projects"
   "SPC w" "Windows")
 
-(general-create-definer memacs/buffer-prefix
+(general-create-definer memacs-buffer-prefix
   :states '(normal insert emacs visual visual-line)
   :prefix "SPC b"
   :non-normal-prefix "M-SPC b")
 
-(memacs/buffer-prefix
+(memacs-buffer-prefix
  "b"   '(switch-to-buffer :which-key "Switch Buffer")
  "d"   '(evil-delete-buffer :which-key "Kill Buffer")
  "l"   '(list-buffers :which-key "List Buffers")
@@ -41,21 +41,21 @@
  "s"   '((lambda () (interactive) (switch-to-buffer "*scratch*")) :which-key "*scratch*")
  "TAB" '((lambda () (interactive) (switch-to-buffer nil)) :which-key "Other Buffer"))
 
-(general-create-definer memacs/file-prefix
+(general-create-definer memacs-file-prefix
   :states '(normal insert emacs visual visual-line)
   :prefix "SPC f"
   :non-normal-prefix "M-SPC f")
 
-(memacs/file-prefix
+(memacs-file-prefix
   "f" '(find-file :which-key "Find File")
   "w" '(evil-write :which-key "Write File"))
 
-(general-create-definer memacs/help-prefix
+(general-create-definer memacs-help-prefix
   :states '(normal insert emacs visual visual-line)
   :prefix "SPC h"
   :non-normal-prefix "M-SPC h")
 
-(memacs/help-prefix
+(memacs-help-prefix
  "?" '(help-for-help :which-key "Help")
  "." '(display-local-help :which-key "Local Help")
  "a" '(apropos :which-key "Search")
@@ -66,24 +66,24 @@
  "s" '(describe-syntax :which-key "Describe Syntax")
  "v" '(describe-variable :which-key "Describe Variable"))
 
-(general-create-definer memacs/project-prefix
+(general-create-definer memacs-project-prefix
   :states '(normal insert emacs visual visual-line)
   :prefix "SPC p"
   :non-normal-prefix "M-SPC p")
 
-(memacs/project-prefix
+(memacs-project-prefix
  "f" '(projectile-find-file :which-key "Find File")
  "g" '(projectile-grep :which-key "Grep")
  "l" '(projectile-edit-dir-locals :which-key "Edit Dir-Locals")
  "p" '(projectile-switch-project :which-key "Switch Project")
  "r" '(projectile-replace :which-key "Replace String"))
 
-(general-create-definer memacs/window-prefix
+(general-create-definer memacs-window-prefix
   :states '(normal insert emacs visual visual-line)
   :prefix "SPC w"
   :non-normal-prefix "M-SPC w")
 
-(memacs/window-prefix
+(memacs-window-prefix
  "/" '(evil-window-vsplit :which-key "Vertical Split")
  "-" '(evil-window-split :which-key "Horizontal Split")
  "d" '(evil-window-delete :which-key "Delete Window")

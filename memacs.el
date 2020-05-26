@@ -26,6 +26,6 @@
 		       version-control))
 
 (dolist (module memacs-modules)
-  (memacs/load-module module))
+  (memacs-load-module module))
 
 ;;; memacs.el ends here

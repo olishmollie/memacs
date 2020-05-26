@@ -36,10 +36,11 @@
 	  (exec-path-from-shell-initialize)))
 
 ;; Vim Emulation
+;; TODO -- Bind something to (suspend-frame) for pausing an emacs instance
+;; in the terminal.
 (use-package evil
-  :init
-  (setq evil-want-C-u-scroll t)
-:config (evil-mode t))
+  :init (setq evil-want-C-u-scroll t)
+  :config (evil-mode t))
 (use-package evil-commentary
   :after evil
   :config (evil-commentary-mode t))

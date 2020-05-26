@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(defun memacs/company-init ()
+(defun memacs-company-init ()
   "Initialize company mode."
   (add-hook 'prog-mode-hook
             (lambda ()
@@ -17,10 +17,10 @@
   (setq company-minimum-prefix-length 1
 	company-selection-wrap-around t)
   :config
-  (add-hook 'company-mode-hook #'memacs/add-company-keybindings)
-  (memacs/company-init))
+  (add-hook 'company-mode-hook #'memacs-add-company-keybindings)
+  (memacs-company-init))
 
-(defun memacs/add-company-keybindings ()
+(defun memacs-add-company-keybindings ()
   "Add keybindings to company-mode."
   (define-key evil-insert-state-map (kbd "C-n") #'company-complete)
   (define-key evil-insert-state-map (kbd "C-p") #'company-complete)
