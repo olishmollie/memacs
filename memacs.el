@@ -18,14 +18,12 @@
                        javascript
                        latex
                        lsp
-		       mode-line
                        rust
 		       terminal
-                       themes
                        verilog
 		       version-control))
 
-(dolist (module memacs-modules)
-  (memacs-load-module module))
+(setq memacs-faces '(mode-line
+                     themes))
 
 ;;; memacs.el ends here

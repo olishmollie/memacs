@@ -11,7 +11,11 @@
 (defvar memacs-custom-file (concat memacs-modules-directory "custom.el"))
 
 (defvar memacs-modules
-  "A list of modules that are loaded on startup. Defined in 'memacs.el'"
+  "A list of modules that are loaded on startup. Defined in 'memacs.el'."
+  nil)
+
+(defvar memacs-faces
+  "A list of modules to run after frames are loaded. Defined in 'memacs.el'."
   nil)
 
 (defvar memacs-veemacs-modes

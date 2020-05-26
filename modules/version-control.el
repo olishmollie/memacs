@@ -36,6 +36,7 @@
   (kbd "SPC")     #'memacs-global-prefix-map
   (kbd "gg")      #'beginning-of-buffer
   (kbd "G")       #'end-of-buffer
+  (kbd "n")       #'magit-section-forward
   (kbd "}")       #'evil-forward-paragraph
   (kbd "{")       #'evil-backward-paragraph
   (kbd "C-k")     #'magit-discard)

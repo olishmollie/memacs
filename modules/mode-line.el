@@ -87,12 +87,6 @@
        (.warning (propertize (format "!%s" .warning) 'face 'memacs-mode-line-yellow))
        (t (propertize "-" 'face 'memacs-mode-line-green)))))
 
-;; Add mode-line padding
-(set-face-attribute 'mode-line nil
-                    :box `(:line-width 12 :color ,(face-attribute 'mode-line :background)))
-(set-face-attribute 'mode-line-inactive nil
-                    :box `(:line-width 12 :color ,(face-attribute 'mode-line-inactive :background)))
-
 ;; Custom faces
 (make-face 'memacs-mode-line-yellow)
 (set-face-attribute 'memacs-mode-line-yellow nil
@@ -117,5 +111,27 @@
 (make-face 'memacs-mode-line-default)
 (set-face-attribute 'memacs-mode-line-default nil
                     :inherit 'mode-line-face)
+
+;; Add mode-line padding
+;; For an explanation of the extra logic,see
+;; https://stackoverflow.com/questions/18904529/after-emacs-deamon-i-can-not-see-new-theme-in-emacsclient-frame-it-works-fr
+
+;; TODO -- Why doesn't this work when starting emacs from Emacs.App??
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (select-frame frame)
+                (set-face-attribute
+                 'mode-line nil :box
+                 `(:line-width 12 :color ,(face-attribute 'mode-line :background)))
+                (set-face-attribute
+                 'mode-line-inactive nil :box
+                 `(:line-width 12 :color ,(face-attribute 'mode-line-inactive :background)))))
+  (progn (set-face-attribute
+          'mode-line nil :box
+          `(:line-width 12 :color ,(face-attribute 'mode-line :background)))
+         (set-face-attribute
+          'mode-line-inactive nil :box
+          `(:line-width 12 :color ,(face-attribute 'mode-line-inactive :background)))))
 
 ;;; mode-line ends here
