@@ -77,7 +77,7 @@
 (defun memacs-mode-line-vc-branch ()
   "Memacs mode-line vc-branch segment."
   (unless (null vc-mode)
-    (propertize (concat "*" (substring vc-mode 5)) 'face 'memacs-mode-line-green)))
+    (propertize (substring vc-mode 5) 'face 'memacs-mode-line-green)))
 
 (defun memacs-mode-line-flycheck-status ()
   "Memacs mode-line flycheck status."
