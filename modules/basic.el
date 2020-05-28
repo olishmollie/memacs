@@ -4,10 +4,11 @@
 
 ;;; Code:
 
-(require 'server)
-(load "server")
-(unless (server-running-p)
-  (server-start))
+(when (eq 'darwin system-type)
+  (require 'server)
+  (load "server")
+  (unless (server-running-p)
+    (server-start)))
 
 (defvar memacs-modules-directory (concat user-emacs-directory "modules/"))
 (defvar memacs-backup-directory (concat user-emacs-directory "backups"))
