@@ -17,7 +17,8 @@
 (memacs-global-prefix
   "!"   '(shell-command :which-key "Shell Command")
   ":"   '(eval-expression :which-key "Eval")
-  "SPC" '(execute-extended-command :which-key "M-x"))
+  "SPC" '(execute-extended-command :which-key "M-x")
+  "q"   '(kill-emacs :which-key "Quit"))
 
 (which-key-add-key-based-replacements
   "SPC b" "Buffers"
