@@ -36,8 +36,10 @@
 (global-auto-revert-mode t)
 (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'prog-mode-hook #'linum-mode)
+
 ;; ido
 (require 'ido)
+(setq ido-auto-merge-work-directories-length -1)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
