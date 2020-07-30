@@ -14,6 +14,7 @@
                        filetree
                        flycheck
                        go
+                       haskell
                        java
                        javascript
                        latex
