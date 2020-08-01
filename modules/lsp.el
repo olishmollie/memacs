@@ -22,8 +22,7 @@
     c++-mode
     go-mode
     java-mode
-    js-mode
-    rust-mode))
+    js-mode))
 
 (defun memacs-lsp-mode-prefix ()
   "Helpful keybindings for modes that use lsp mode."

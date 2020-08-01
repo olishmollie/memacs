@@ -20,7 +20,6 @@ Try setting it as a dir-local.")
 (defun memacs-init-c-c++-mode ()
   "Initialize c-c++ mode."
   (setq c-basic-offset 4)
-  (lsp)
   (add-hook 'before-save-hook #'memacs-c-c++-format-on-save nil t))
 
 (add-hook 'c-mode-hook #'memacs-init-c-c++-mode)

@@ -18,7 +18,6 @@
                        java
                        javascript
                        latex
-                       lsp
                        rust
 		       terminal
                        verilog

@@ -4,8 +4,6 @@
 
 ;;; Code:
 
-(use-package lsp-java)
-
 (defvar memacs-enable-java-format-on-save t
   "If non-nil, automatically format a Java buffer on save.")
 
@@ -16,7 +14,6 @@
 
 (add-hook 'java-mode-hook
           (lambda ()
-            (lsp)
             (add-hook 'before-save-hook #'memacs-java-format-on-save nil t)))
 
 ;;; java.el ends here

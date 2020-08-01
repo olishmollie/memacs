@@ -10,7 +10,6 @@
 
 (add-hook 'go-mode-hook
           (lambda ()
-            (lsp)
             (setq tab-width 4)
             (add-hook 'before-save-hook #'gofmt-before-save)))
 

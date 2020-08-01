@@ -8,7 +8,7 @@
 
 (use-package typescript-mode
   :config
-  (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode)))
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode)))
 
 (require 'prettier-js)
 
@@ -22,7 +22,6 @@
 
 (defun memacs-init-js-modes ()
   "Init js and ts modes."
-  (lsp)
   (add-hook 'before-save-hook #'memacs-js-format-on-save nil t))
 
 (add-hook 'js-mode-hook #'memacs-init-js-modes)
