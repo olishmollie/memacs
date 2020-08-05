@@ -18,6 +18,8 @@
 
 (add-hook 'rust-mode-hook
           (lambda ()
+            (when (fboundp #'flycheck-select-checker)
+                (flycheck-select-checker 'rust-clippy))
             (add-hook 'before-save-hook #'memacs-rust-format-on-save nil t)))
 
 ;;; rust ends here
