@@ -24,6 +24,7 @@
 		       version-control))
 
 (setq memacs-faces '(mode-line
-                     themes))
+                     ;; themes
+                     ))
 
 ;;; memacs.el ends here

@@ -36,7 +36,7 @@
   "Render right aligned segment of the Memacs mode-line."
   (concat (format-mode-line "%Z")
           "  "
-          (propertize mode-name 'face 'memacs-mode-line-blue)
+          (propertize (format-mode-line mode-name) 'face 'memacs-mode-line-blue)
           "  "
           (memacs-mode-line-vc-branch)
           "  "

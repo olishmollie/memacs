@@ -48,13 +48,13 @@
   :after evil
   :config (global-evil-surround-mode t))
 
-;; Popup Key Binding Hints
+;; Popup Key Binding
 (use-package which-key
-  :defer t
-  :config (which-key-mode))
+   :defer t
+   :config (which-key-mode))
 
-;; Project Management
+;; Project
 (use-package projectile
-  :config (projectile-mode t))
+   :config (projectile-mode t))
 
 ;;; packages.el ends here

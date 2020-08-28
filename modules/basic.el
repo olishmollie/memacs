@@ -30,7 +30,6 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-(electric-pair-mode t)
 (show-paren-mode t)
 (column-number-mode t)
 (global-auto-revert-mode t)
