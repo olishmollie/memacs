@@ -6,11 +6,8 @@
 
 (use-package zenburn-theme
   :defer t)
-(use-package spacemacs-theme
-  :defer t)
 
-(load-theme 'zenburn)
-
-;; TODO -- Load a theme here.
+(load-theme 'misterioso)
+(set-face-attribute 'cursor nil :background "#F4AF4A")
 
 ;;; themes.el ends here
