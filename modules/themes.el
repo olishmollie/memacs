@@ -6,8 +6,7 @@
 
 (use-package zenburn-theme
   :defer t)
-
 (load-theme 'misterioso)
-(set-face-attribute 'cursor nil :background "#F4AF4A")
+(add-to-list 'default-frame-alist '(cursor-color . "#F4AF4A"))
 
 ;;; themes.el ends here
