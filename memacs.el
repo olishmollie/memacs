@@ -8,7 +8,6 @@
 
 (setq memacs-modules '(basic
                        c-c++
-                       custom
 		       completion
                        dlang
                        filetree
