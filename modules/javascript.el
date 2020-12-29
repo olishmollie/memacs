@@ -18,7 +18,11 @@
 (defun memacs-js-format-on-save ()
   "If `memacs-enable-js-format-on-save' is non-nil, format the current JavaScript buffer."
   (when memacs-enable-js-format-on-save
-    (prettier-js)))
+    (if (string-equal "json" (file-name-extension buffer-file-name))
+        (let ((prettier-js-args '("--parser=json")))
+          (prettier-js))
+      (prettier-js))))
+
 
 (defun memacs-init-js-modes ()
   "Init js and ts modes."
