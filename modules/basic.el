@@ -33,7 +33,7 @@
 (show-paren-mode t)
 (column-number-mode t)
 (global-auto-revert-mode t)
-(add-hook 'prog-mode-hook #'hl-line-mode)
+;; (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'prog-mode-hook #'linum-mode)
 
 ;; ido
