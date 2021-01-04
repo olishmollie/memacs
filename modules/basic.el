@@ -35,6 +35,7 @@
 (global-auto-revert-mode t)
 ;; (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'prog-mode-hook #'linum-mode)
+(add-hook 'prog-mode-hook #'electric-pair-mode)
 
 ;; ido
 (require 'ido)
