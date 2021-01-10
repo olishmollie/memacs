@@ -10,6 +10,11 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode)))
 
+(use-package tide
+  :config
+  (tide-setup)
+  (tide-hl-identifier-mode +1))
+
 (require 'prettier-js)
 
 (defvar memacs-enable-js-format-on-save t
@@ -23,12 +28,17 @@
           (prettier-js))
       (prettier-js))))
 
+(defun memacs-init-ts-mode ()
+  "Configure typsecript mode."
+  (tide-setup)
+  (tide-hl-identifier-mode +1))
 
-(defun memacs-init-js-modes ()
-  "Init js and ts modes."
+
+(defun memacs-init-js-mode ()
+  "Init JavaScript mode."
   (add-hook 'before-save-hook #'memacs-js-format-on-save nil t))
 
-(add-hook 'js-mode-hook #'memacs-init-js-modes)
-(add-hook 'typescript-mode-hook #'memacs-init-js-modes)
+(add-hook 'js-mode-hook #'memacs-init-js-mode)
+(add-hook 'typescript-mode-hook #'memacs-init-ts-mode)
 
 ;;; javascript.el ends here
