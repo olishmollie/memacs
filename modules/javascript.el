@@ -12,7 +12,6 @@
 
 (use-package tide
   :config
-  (tide-setup)
   (tide-hl-identifier-mode +1))
 
 (require 'prettier-js)
